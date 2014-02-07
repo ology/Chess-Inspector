@@ -26,22 +26,41 @@ sub coverage
 {
     my ($self, %args) = @_;
     my $g = Chess::Rep::Coverage->new;
-#$self->logger->debug(Dumper $g);
-    for my $row (1 .. 8)
+    $g->set_from_fen('rnbqkbnr/pppp11pp/4p3/5p2/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+    my $c = $g->coverage();
+#$self->logger->debug(Dumper $c);
+    for my $col ('A' .. 'H')
     {
-        my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
-        for my $col ('A' .. 'H')
+        my $parent = $self->fast_append( tag => 'board', data => { col => $col } );
+        for my $row (1 .. 8)
         {
+            my $key = $col . $row;
+            my $piece = exists $c->{$key}{occupant}
+                ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant}
+                : '';
+            my $protect = exists $c->{$key}{is_protected_by}
+                ? scalar @{ $c->{$key}{is_protected_by} }
+                : 0;
+            my $threat = exists $c->{$key}{is_threatened_by}
+                ? scalar @{ $c->{$key}{is_threatened_by} }
+                : 0;
+            my $wmove = exists $c->{$key}{white_can_move_here}
+                ? scalar @{ $c->{$key}{white_can_move_here} }
+                : 0;
+            my $bmove = exists $c->{$key}{black_can_move_here}
+                ? scalar @{ $c->{$key}{black_can_move_here} }
+                : 0;
+
             $self->fast_append(
                 parent => $parent,
                 tag    => 'cell',
                 data   => {
-                    col        => $col,
-                    piece      => $g->piece($row, $col),
-                    protected  => $g->protected($row, $col),
-                    threatened => $g->threatened($row, $col),
-                    white_move => $g->white_can_move($row, $col),
-                    black_move => $g->black_can_move($row, $col),
+                    row            => $row,
+                    piece          => $piece,
+                    protected      => $protect,
+                    threatened     => $threat,
+                    white_can_move => $wmove,
+                    black_can_move => $bmove,
                 },
             );
         }
