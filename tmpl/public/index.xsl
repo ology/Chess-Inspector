@@ -12,18 +12,37 @@
  </xsl:template>
  <xsl:template match="/" mode="local">
 
+<div class="row">
+<div class="large-6 column">
+<h3>Coverage</h3>
 <table border="1">
 <xsl:for-each select="//response/board">
-    <xsl:variable name="row"><xsl:value-of select="@row"/></xsl:variable>
     <tr>
         <xsl:for-each select="cell">
-        <td>
-            <xsl:value-of select="$row"/><xsl:value-of select="@col"/>
+        <td align="center" height="50" width="50">
+            <xsl:if test="@white_can_move > 0">
+                <xsl:attribute name="style">background: lightblue</xsl:attribute>
+            </xsl:if>
+            <xsl:if test="@black_can_move > 0">
+                <xsl:attribute name="style">background: tan</xsl:attribute>
+            </xsl:if>
+            <xsl:if test="@threatened > 0">
+                <xsl:attribute name="style">background: yellow</xsl:attribute>
+            </xsl:if>
+            <xsl:if test="@protected > 0">
+                <xsl:attribute name="style">border: 3px solid green</xsl:attribute>
+            </xsl:if>
+            <xsl:if test="@threatened > 0 and @protected > 0">
+                <xsl:attribute name="style">background: yellow; border: 3px solid green</xsl:attribute>
+            </xsl:if>
+            <xsl:value-of select="@piece"/>
         </td>
         </xsl:for-each>
     </tr>
     </xsl:for-each>
 </table>
+</div>
+</div>
 
  </xsl:template>
 </xsl:stylesheet>
