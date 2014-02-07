@@ -13,7 +13,7 @@
  <xsl:template match="/" mode="local">
 
 <div class="row">
-<div class="large-6 column">
+<div class="large-12 column">
 <h3>Coverage</h3>
 <table border="1">
 <xsl:for-each select="//response/board">
@@ -41,6 +41,17 @@
     </tr>
     </xsl:for-each>
 </table>
+</div>
+</div>
+
+<div class="row">
+<div class="large-12 column">
+<button name="start">|&#60;</button>
+<button name="reverse">&#60;&#60;</button>
+<button name="step-reverse">&#60;</button>
+<button name="pause">| |</button>
+<button name="step-forward">&#62;</button>
+<button name="forward">&#62;&#62;</button>
 </div>
 </div>
 
