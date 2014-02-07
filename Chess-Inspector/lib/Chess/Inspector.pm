@@ -3,6 +3,7 @@ use strict;
 use warnings FATAL => 'all';
 use parent qw(Chameleon5::Site::Base);
 
+use lib '/Users/gene/sandbox/github/ology/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
 
 our $VERSION = '0.01';
@@ -26,11 +27,11 @@ sub coverage
     my $g = Chess::Rep::Coverage->new;
     $g->set_from_fen('rnbqkbnr/pppp11pp/4p3/5p2/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
     my $c = $g->coverage();
-#$self->logger->debug(Dumper $c);
-    for my $col ('A' .. 'H')
+#use Data::Dumper; $self->logger->debug(Dumper $c);
+    for my $row (1 .. 8)
     {
-        my $parent = $self->fast_append( tag => 'board', data => { col => $col } );
-        for my $row (1 .. 8)
+        my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
+        for my $col ('A' .. 'H')
         {
             my $key = $col . $row;
             my $piece = exists $c->{$key}{occupant}
@@ -48,7 +49,7 @@ sub coverage
                 parent => $parent,
                 tag    => 'cell',
                 data   => {
-                    row            => $row,
+                    col            => $col,
                     piece          => $piece,
                     protected      => $protect,
                     threatened     => $threat,
