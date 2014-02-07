@@ -3,9 +3,7 @@ use strict;
 use warnings FATAL => 'all';
 use parent qw(Chameleon5::Site::Base);
 
-use lib '/Users/gene/sandbox/github/ology/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
-use Data::Dumper;
 
 our $VERSION = '0.01';
 
@@ -36,20 +34,15 @@ sub coverage
         {
             my $key = $col . $row;
             my $piece = exists $c->{$key}{occupant}
-                ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant}
-                : '';
+                ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant} : '';
             my $protect = exists $c->{$key}{is_protected_by}
-                ? scalar @{ $c->{$key}{is_protected_by} }
-                : 0;
+                ? scalar @{ $c->{$key}{is_protected_by} }     : 0;
             my $threat = exists $c->{$key}{is_threatened_by}
-                ? scalar @{ $c->{$key}{is_threatened_by} }
-                : 0;
+                ? scalar @{ $c->{$key}{is_threatened_by} }    : 0;
             my $wmove = exists $c->{$key}{white_can_move_here}
-                ? scalar @{ $c->{$key}{white_can_move_here} }
-                : 0;
+                ? scalar @{ $c->{$key}{white_can_move_here} } : 0;
             my $bmove = exists $c->{$key}{black_can_move_here}
-                ? scalar @{ $c->{$key}{black_can_move_here} }
-                : 0;
+                ? scalar @{ $c->{$key}{black_can_move_here} } : 0;
 
             $self->fast_append(
                 parent => $parent,
