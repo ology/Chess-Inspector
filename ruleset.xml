@@ -11,12 +11,6 @@
      <http_method value="POST" />
      <class value="public" />
     </resource>
-    <resource>
-     <sub value="board" />
-     <http_method value="GET" />
-     <http_method value="POST" />
-     <class value="public" />
-    </resource>
    </resources>
   </page>
  </pages>
