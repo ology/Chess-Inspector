@@ -52,6 +52,7 @@
 <button name="pause">| |</button>
 <button name="step-forward">&#62;</button>
 <button name="forward">&#62;&#62;</button>
+<button name="end">&#62;|</button>
 </div>
 </div>
 
