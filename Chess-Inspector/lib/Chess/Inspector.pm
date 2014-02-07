@@ -22,9 +22,11 @@ Chess::Inspector - Inspect a chess game
 
 =cut
 
-sub board
+sub coverage
 {
     my ($self, %args) = @_;
+    my $g = Chess::Rep::Coverage->new;
+#$self->logger->debug(Dumper $g);
     for my $row (1 .. 8)
     {
         my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
@@ -34,19 +36,16 @@ sub board
                 parent => $parent,
                 tag    => 'cell',
                 data   => {
-                    col => $col
+                    col        => $col,
+                    piece      => $g->piece($row, $col),
+                    protected  => $g->protected($row, $col),
+                    threatened => $g->threatened($row, $col),
+                    white_move => $g->white_can_move($row, $col),
+                    black_move => $g->black_can_move($row, $col),
                 },
             );
         }
     }
-    return;
-}
-
-sub coverage
-{
-    my ($self, %args) = @_;
-    my $g = Chess::Rep::Coverage->new;
-$self->logger->debug(Dumper $g);
     return;
 }
 
