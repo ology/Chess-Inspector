@@ -93,18 +93,29 @@
 <xsl:if test="//response/game/@pgn">
 <div class="large-6 column">
   <a href="/?fen=" class="tiny button" title="Start">|&#60;</a>
-  <a href="/" class="tiny button" title="Reverse">&#60;&#60;</a>
-  <a href="/" class="tiny button" title="Step-reverse">&#60;</a>
-  <a href="/" class="tiny button" title="Pause">| |</a>
-  <a href="/" class="tiny button" title="Step-forward">&#62;</a>
-  <a href="/" class="tiny button" title="Forward">&#62;&#62;</a>
-  <a href="/" class="tiny button" title="End">&#62;|</a>
+  <a href="" class="tiny button" title="Reverse">&#60;&#60;</a>
+  <a href="" class="tiny button" title="Step-reverse">&#60;</a>
+  <a href="" class="tiny button" title="Pause">| |</a>
+  <a href="" class="tiny button" title="Step-forward">&#62;</a>
+  <a href="" class="tiny button" title="Forward">&#62;&#62;</a>
+  <a href="" class="tiny button" title="End">&#62;|</a>
+  <p>PGN: <xsl:value-of select="//response/game/@pgn"/></p>
 </div>
 </xsl:if>
 
 <div class="large-6 column">
-      <p>Current PGN = <xsl:value-of select="//response/game/@pgn"/></p>
-      <input type="file" name="pgn"/>
+  <form>
+  <table>
+  <tr>
+  <td>
+    <input type="submit" value="Submit" class="tiny button"/>
+  </td>
+  <td>
+    <input type="file" name="pgn"/>
+  </td>
+  </tr>
+  </table>
+  </form>
 </div>
 
 </div>
