@@ -79,7 +79,7 @@ sub coverage
             # Compute the player stats.
             for my $color ( [ white => 128 ], [ black => 0 ] )
             {
-                $player->{$color->[0]}{can_move} += $color eq 'white' ? $wmove : $bmove;
+                $player->{$color->[0]}{can_move} += $color->[0] eq 'white' ? $wmove : $bmove;
                 $player->{$color->[0]}{threaten} += @{ $c->{$key}{threatens} }
                     if exists $c->{$key}{threatens} && $c->{$key}{color} == $color->[1];
                 $player->{$color->[0]}{protect}  += @{ $c->{$key}{protects} }
