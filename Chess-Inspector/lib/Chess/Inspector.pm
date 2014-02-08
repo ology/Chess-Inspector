@@ -43,6 +43,13 @@ sub coverage
         }
     };
 
+    if ( $self->form('toggle') && $fen =~ /^(.+?) (w|b) (.+)$/ )
+    {
+        $fen = $1;
+        $fen .= $2 eq 'w' ? ' b ' : ' w ';
+        $fen .= $3;
+    }
+
     my $g = Chess::Rep::Coverage->new;
     $g->set_from_fen($fen);
     my $c = $g->coverage();
