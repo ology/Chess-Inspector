@@ -24,8 +24,9 @@ Chess::Inspector - Inspect a chess game
 sub coverage
 {
     my ($self, %args) = @_;
+    my $fen = $self->form('fen') || Chess::Rep::FEN_STANDARD;
     my $g = Chess::Rep::Coverage->new;
-    $g->set_from_fen('rnbqkbnr/pppp11pp/4p3/5p2/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+    $g->set_from_fen($fen);
     my $c = $g->coverage();
 #use Data::Dumper; $self->logger->debug(Dumper $c);
     for my $row (1 .. 8)
@@ -59,6 +60,9 @@ sub coverage
             );
         }
     }
+
+    $self->fast_append( tag => 'game', data => { to_move => $g->{to_move} } );
+
     return;
 }
 
