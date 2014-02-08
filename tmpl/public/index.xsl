@@ -87,7 +87,6 @@
   <xsl:if test="//response/game/@pgn">
       <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
   </xsl:if>
-  <label>PGN:</label> <input type="file" name="pgn"/>
 </div>
 
 </div>
@@ -102,6 +101,10 @@
   <button class="tiny" title="Step-forward">&#62;</button>
   <button class="tiny" title="Forward">&#62;&#62;</button>
   <button class="tiny" title="End">&#62;|</button>
+</div>
+
+<div class="large-6 column">
+  <label>PGN:</label> <input type="file" name="pgn"/>
 </div>
 
 </div>
