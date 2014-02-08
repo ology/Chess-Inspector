@@ -68,10 +68,15 @@
   </xsl:if>
   </a>
   <div class="panel">
+    <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
-    <p>Can move: <xsl:value-of select="//response/white/@can_move"/></p>
-    <p>Threaten: <xsl:value-of select="//response/white/@threaten"/></p>
-    <p>Protect: <xsl:value-of select="//response/white/@protect"/></p>
+    </xsl:if>
+    <p>Can move to: <xsl:value-of select="//response/white/@can_move"/>
+    cell<xsl:if test="//response/white/@can_move != 1">s</xsl:if></p>
+    <p>Threaten: <xsl:value-of select="//response/white/@threaten"/>
+    piece<xsl:if test="//response/white/@threaten != 1">s</xsl:if></p>
+    <p>Protect: <xsl:value-of select="//response/white/@protect"/>
+    piece<xsl:if test="//response/white/@protect != 1">s</xsl:if></p>
   </div>
 </div>
 <div class="large-3 column">
@@ -88,10 +93,15 @@
   </xsl:if>
   </a>
   <div class="panel">
+    <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
-    <p>Can move: <xsl:value-of select="//response/black/@can_move"/></p>
-    <p>Threaten: <xsl:value-of select="//response/black/@threaten"/></p>
-    <p>Protect: <xsl:value-of select="//response/black/@protect"/></p>
+    </xsl:if>
+    <p>Can move to: <xsl:value-of select="//response/black/@can_move"/>
+    cell<xsl:if test="//response/black/@can_move != 1">s</xsl:if></p>
+    <p>Threaten: <xsl:value-of select="//response/black/@threaten"/>
+    piece<xsl:if test="//response/black/@threaten != 1">s</xsl:if></p>
+    <p>Protect: <xsl:value-of select="//response/black/@protect"/>
+    piece<xsl:if test="//response/black/@protect != 1">s</xsl:if></p>
   </div>
 </div>
 
