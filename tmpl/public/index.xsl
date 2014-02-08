@@ -59,10 +59,10 @@
   White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
   </h3>
   <div class="panel">
-    <p>Moves made: </p>
-    <p>Can move: </p>
-    <p>Threaten: </p>
-    <p>Protect: </p>
+    <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
+    <p>Can move: <xsl:value-of select="//response/white/@can_move"/></p>
+    <p>Threaten: <xsl:value-of select="//response/white/@threaten"/></p>
+    <p>Protect: <xsl:value-of select="//response/white/@protect"/></p>
   </div>
 </div>
 <div class="large-3 column">
@@ -70,10 +70,10 @@
   Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
   </h3>
   <div class="panel">
-    <p>Moves made: </p>
-    <p>Can move: </p>
-    <p>Threaten: </p>
-    <p>Protect: </p>
+    <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
+    <p>Can move: <xsl:value-of select="//response/black/@can_move"/></p>
+    <p>Threaten: <xsl:value-of select="//response/black/@threaten"/></p>
+    <p>Protect: <xsl:value-of select="//response/black/@protect"/></p>
   </div>
 </div>
 
@@ -107,12 +107,8 @@
   <form>
   <table>
   <tr>
-  <td>
-    <input type="submit" value="PGN" class="tiny button"/>
-  </td>
-  <td>
-    <input type="file" name="pgn"/>
-  </td>
+  <td><input type="submit" value="PGN" class="tiny button"/></td>
+  <td><input type="file" name="pgn"/></td>
   </tr>
   </table>
   </form>
