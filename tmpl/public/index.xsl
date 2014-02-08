@@ -13,7 +13,7 @@
  <xsl:template match="/" mode="local">
 
 <div class="row">
-<div class="large-12 column">
+<div class="large-6 column">
 <h3>Coverage</h3>
 <table border="1">
 <xsl:for-each select="//response/board">
@@ -42,10 +42,29 @@
     </xsl:for-each>
 </table>
 </div>
+
+<div class="large-3 column">
+<h3>
+White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
+</h3>
+<p>Moves:</p>
+<p>Threatens:</p>
+<p>Protects:</p>
+</div>
+
+<div class="large-3 column">
+<h3>
+Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
+</h3>
+<p>Moves:</p>
+<p>Threatens:</p>
+<p>Protects:</p>
+</div>
+
 </div>
 
 <div class="row">
-<div class="large-12 column">
+<div class="large-6 column">
 <button class="tiny" title="Start">|&#60;</button>
 <button class="tiny" title="Reverse">&#60;&#60;</button>
 <button class="tiny" title="Step-reverse">&#60;</button>
@@ -54,6 +73,11 @@
 <button class="tiny" title="Forward">&#62;&#62;</button>
 <button class="tiny" title="End">&#62;|</button>
 </div>
+
+<div class="large-6 column">
+<input type="file" name="pgn" size="1024" class="button"/>
+</div>
+
 </div>
 
  </xsl:template>
