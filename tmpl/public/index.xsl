@@ -80,8 +80,8 @@
 <div class="large-6 column">
   <form>
   <xsl:variable name="fen" select="//response/game/@fen"/>
-  <label>FEN:</label> <input type="text" name="fen" value="{$fen}"/>
-  <input type="submit" value="Submit" class="tiny button right"/>
+  <input type="text" name="fen" value="{$fen}"/>
+  <input type="submit" value="FEN" class="tiny button right"/>
   </form>
 </div>
 
@@ -90,7 +90,7 @@
 <div class="row">
 <div class="large-12 column">
 
-<xsl:if test="//response/game/@pgn">
+<xsl:if test="//response/game/@pgn != 0">
 <div class="large-6 column">
   <a href="/?fen=" class="tiny button" title="Start">|&#60;</a>
   <a href="" class="tiny button" title="Reverse">&#60;&#60;</a>
@@ -108,7 +108,7 @@
   <table>
   <tr>
   <td>
-    <input type="submit" value="Submit" class="tiny button"/>
+    <input type="submit" value="PGN" class="tiny button"/>
   </td>
   <td>
     <input type="file" name="pgn"/>
