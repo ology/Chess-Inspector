@@ -57,12 +57,12 @@
 <div class="large-3 column">
   <p/>
   <a>
-  <xsl:if test="//response/game/@to_move = 128">
+  <xsl:if test="//response/game/@to_move = 0">
     <xsl:attribute name="class">button</xsl:attribute>
     <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
-  <xsl:if test="//response/game/@to_move = 0">
+  <xsl:if test="//response/game/@to_move = 128">
     <xsl:attribute name="class">button secondary disabled</xsl:attribute>
     White to move
   </xsl:if>
@@ -77,12 +77,12 @@
 <div class="large-3 column">
   <p/>
   <a>
-  <xsl:if test="//response/game/@to_move = 0">
+  <xsl:if test="//response/game/@to_move = 128">
     <xsl:attribute name="class">button</xsl:attribute>
     <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
-  <xsl:if test="//response/game/@to_move = 128">
+  <xsl:if test="//response/game/@to_move = 0">
     <xsl:attribute name="class">button secondary disabled</xsl:attribute>
     Black to move
   </xsl:if>
