@@ -24,28 +24,40 @@ Chess::Inspector - Inspect a chess game
 sub coverage
 {
     my ($self, %args) = @_;
+
     my $fen = $self->form('fen') || Chess::Rep::FEN_STANDARD;
     my $pgn = $self->form('pgn') || undef;
 
-    my $w_moves_made = 0;
-    my $w_can_move = 0;
-    my $w_threaten = 0;
-    my $w_protect = 0;
-    my $b_moves_made = 0;
-    my $b_can_move = 0;
-    my $b_threaten = 0;
-    my $b_protect = 0;
+    my $player = {
+        white => {
+            moves_made => 0,
+            can_move   => 0,
+            threaten   => 0,
+            protect    => 0,
+        },
+        black => {
+            moves_made => 0,
+            can_move   => 0,
+            threaten   => 0,
+            protect    => 0,
+        }
+    };
 
     my $g = Chess::Rep::Coverage->new;
     $g->set_from_fen($fen);
     my $c = $g->coverage();
 #use Data::Dumper; $self->logger->debug(Dumper $c);
+
     for my $row (1 .. 8)
     {
+        # Add the parent row to the response.
         my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
         for my $col ('A' .. 'H')
         {
+            # Convenience.
             my $key = $col . $row;
+
+            # Compute the cell occupancy, protection, threat & move state.
             my $piece = exists $c->{$key}{occupant}
                 ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant} : '';
             my $protect = exists $c->{$key}{is_protected_by}
@@ -57,24 +69,27 @@ sub coverage
             my $bmove = exists $c->{$key}{black_can_move_here}
                 ? scalar @{ $c->{$key}{black_can_move_here} } : 0;
 
-            $w_can_move += $wmove;
-            $w_threaten += @{ $c->{$key}{threatens} }
+            # Compute the player stats.
+            $player->{white}{can_move} += $wmove;
+            $player->{white}{threaten} += @{ $c->{$key}{threatens} }
                 if exists $c->{$key}{threatens} && $c->{$key}{color} == 128;
-            $w_protect += @{ $c->{$key}{protects} }
+            $player->{white}{protect}  += @{ $c->{$key}{protects} }
                 if exists $c->{$key}{protects} && $c->{$key}{color} == 128;
-            $b_can_move += $bmove;
-            $b_threaten += @{ $c->{$key}{threatens} }
+            $player->{black}{can_move} += $bmove;
+            $player->{black}{threaten} += @{ $c->{$key}{threatens} }
                 if exists $c->{$key}{threatens} && $c->{$key}{color} == 0;
-            $b_protect += @{ $c->{$key}{protects} }
+            $player->{black}{protect}  += @{ $c->{$key}{protects} }
                 if exists $c->{$key}{protects} && $c->{$key}{color} == 0;
 
+            # Add the cell state to the response.
             $self->fast_append(
                 parent => $parent,
                 tag    => 'cell',
                 data   => {
                     col            => $col,
                     piece          => $piece,
-                    protected      => $protect,
+                    # Add one to protected to thicken the CSS border.
+                    protected      => $protect ? $protect + 1 : 0,
                     threatened     => $threat,
                     white_can_move => $wmove,
                     black_can_move => $bmove,
@@ -83,6 +98,7 @@ sub coverage
         }
     }
 
+    # Add the game state to the response.
     $self->fast_append(
         tag => 'game',
         data => {
@@ -92,24 +108,19 @@ sub coverage
         }
     );
 
-    $self->fast_append(
-        tag => 'white',
-        data => {
-            moves_made => $w_moves_made,
-            can_move   => $w_can_move,
-            threaten   => $w_threaten,
-            protect    => $w_protect,
-        }
-    );
-    $self->fast_append(
-        tag => 'black',
-        data => {
-            moves_made => $b_moves_made,
-            can_move   => $b_can_move,
-            threaten   => $b_threaten,
-            protect    => $b_protect,
-        }
-    );
+    # Add player status to the response.
+    for $color (qw( white black ))
+    {
+        $self->fast_append(
+            tag => $color,
+            data => {
+                moves_made => $player->{$color}{moves_made},
+                can_move   => $player->{$color}{can_move},
+                threaten   => $player->{$color}{threaten},
+                protect    => $player->{$color}{protect},
+            }
+        );
+    }
 
     return;
 }
