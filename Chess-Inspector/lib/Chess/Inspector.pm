@@ -70,16 +70,14 @@ sub coverage
                 ? scalar @{ $c->{$key}{black_can_move_here} } : 0;
 
             # Compute the player stats.
-            $player->{white}{can_move} += $wmove;
-            $player->{white}{threaten} += @{ $c->{$key}{threatens} }
-                if exists $c->{$key}{threatens} && $c->{$key}{color} == 128;
-            $player->{white}{protect}  += @{ $c->{$key}{protects} }
-                if exists $c->{$key}{protects} && $c->{$key}{color} == 128;
-            $player->{black}{can_move} += $bmove;
-            $player->{black}{threaten} += @{ $c->{$key}{threatens} }
-                if exists $c->{$key}{threatens} && $c->{$key}{color} == 0;
-            $player->{black}{protect}  += @{ $c->{$key}{protects} }
-                if exists $c->{$key}{protects} && $c->{$key}{color} == 0;
+            for my $color ( [ white => 128 ], [ black => 0 ] )
+            {
+                $player->{$color->[0]}{can_move} += $color eq 'white' ? $wmove : $bmove;
+                $player->{$color->[0]}{threaten} += @{ $c->{$key}{threatens} }
+                    if exists $c->{$key}{threatens} && $c->{$key}{color} == $color->[1];
+                $player->{$color->[0]}{protect}  += @{ $c->{$key}{protects} }
+                    if exists $c->{$key}{protects} && $c->{$key}{color} == $color->[1];
+            }
 
             # Add the cell state to the response.
             $self->fast_append(
@@ -109,7 +107,7 @@ sub coverage
     );
 
     # Add player status to the response.
-    for $color (qw( white black ))
+    for my $color (qw( white black ))
     {
         $self->fast_append(
             tag => $color,
