@@ -46,13 +46,13 @@
 
 <div class="row">
 <div class="large-12 column">
-<button class="tiny" name="start">|&#60;</button>
-<button class="tiny" name="reverse">&#60;&#60;</button>
-<button class="tiny" name="step-reverse">&#60;</button>
-<button class="tiny" name="pause">| |</button>
-<button class="tiny" name="step-forward">&#62;</button>
-<button class="tiny" name="forward">&#62;&#62;</button>
-<button class="tiny" name="end">&#62;|</button>
+<button class="tiny" title="start">|&#60;</button>
+<button class="tiny" title="reverse">&#60;&#60;</button>
+<button class="tiny" title="step-reverse">&#60;</button>
+<button class="tiny" title="pause">| |</button>
+<button class="tiny" title="step-forward">&#62;</button>
+<button class="tiny" title="forward">&#62;&#62;</button>
+<button class="tiny" title="end">&#62;|</button>
 </div>
 </div>
 
