@@ -25,6 +25,7 @@ sub coverage
 {
     my ($self, %args) = @_;
     my $fen = $self->form('fen') || Chess::Rep::FEN_STANDARD;
+    my $pgn = $self->form('pgn') || undef;
     my $g = Chess::Rep::Coverage->new;
     $g->set_from_fen($fen);
     my $c = $g->coverage();
@@ -66,6 +67,7 @@ sub coverage
         data => {
             to_move => $g->{to_move},
             fen     => $fen,
+            pgn     => $pgn ? $pgn : 0,
         }
     );
 
