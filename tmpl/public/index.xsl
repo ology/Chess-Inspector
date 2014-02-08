@@ -47,23 +47,37 @@
 <h3>
 White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
 </h3>
+<div class="panel">
 <p>Moves:</p>
 <p>Threatens:</p>
 <p>Protects:</p>
+</div>
 </div>
 
 <div class="large-3 column">
 <h3>
 Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
 </h3>
+<div class="panel">
 <p>Moves:</p>
 <p>Threatens:</p>
 <p>Protects:</p>
+</div>
+</div>
+
+<div class="large-6 column">
+<xsl:variable name="fen" select="//response/game/@fen"/>
+<label>FEN:</label> <input type="text" name="fen" value="{$fen}"/>
+<xsl:if test="//response/game/@pgn">
+    <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
+</xsl:if>
+<label>PGN:</label> <input type="file" name="pgn"/>
 </div>
 
 </div>
 
 <div class="row">
+
 <div class="large-6 column">
 <button class="tiny" title="Start">|&#60;</button>
 <button class="tiny" title="Reverse">&#60;&#60;</button>
@@ -72,10 +86,6 @@ Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
 <button class="tiny" title="Step-forward">&#62;</button>
 <button class="tiny" title="Forward">&#62;&#62;</button>
 <button class="tiny" title="End">&#62;|</button>
-</div>
-
-<div class="large-6 column">
-<input type="file" name="pgn" size="1024" class="button"/>
 </div>
 
 </div>
