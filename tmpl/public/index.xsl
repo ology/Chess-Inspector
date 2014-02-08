@@ -41,10 +41,10 @@
                 <xsl:attribute name="style">background: yellow</xsl:attribute>
             </xsl:if>
             <xsl:if test="@protected > 0">
-                <xsl:attribute name="style">border: 3px solid green</xsl:attribute>
+                <xsl:attribute name="style">border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
             <xsl:if test="@threatened > 0 and @protected > 0">
-                <xsl:attribute name="style">background: yellow; border: 3px solid green</xsl:attribute>
+                <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
             <xsl:value-of select="@piece"/>
         </td>
