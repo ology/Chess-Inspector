@@ -55,9 +55,18 @@
 </div>
 
 <div class="large-3 column">
-  <h3>
-  White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
-  </h3>
+  <p/>
+  <a>
+  <xsl:if test="//response/game/@to_move = 128">
+    <xsl:attribute name="class">button radius</xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    White
+  </xsl:if>
+  <xsl:if test="//response/game/@to_move = 0">
+    <xsl:attribute name="class">button secondary radius disabled</xsl:attribute>
+    White to move
+  </xsl:if>
+  </a>
   <div class="panel">
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
     <p>Can move: <xsl:value-of select="//response/white/@can_move"/></p>
@@ -66,9 +75,18 @@
   </div>
 </div>
 <div class="large-3 column">
-  <h3>
-  Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
-  </h3>
+  <p/>
+  <a>
+  <xsl:if test="//response/game/@to_move = 0">
+    <xsl:attribute name="class">button radius</xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    Black
+  </xsl:if>
+  <xsl:if test="//response/game/@to_move = 128">
+    <xsl:attribute name="class">button secondary radius disabled</xsl:attribute>
+    Black to move
+  </xsl:if>
+  </a>
   <div class="panel">
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
     <p>Can move: <xsl:value-of select="//response/black/@can_move"/></p>
