@@ -13,6 +13,7 @@
  <xsl:template match="/" mode="local">
 
 <div class="row">
+
 <div class="large-6 column">
 <h3>Coverage</h3>
 <table border="1">
@@ -83,11 +84,6 @@
   <input type="submit" value="Submit" class="tiny button right"/>
   </form>
 </div>
-<div class="large-6 column">
-  <xsl:if test="//response/game/@pgn">
-      <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
-  </xsl:if>
-</div>
 
 </div>
 
@@ -104,6 +100,9 @@
 </div>
 
 <div class="large-6 column">
+  <xsl:if test="//response/game/@pgn">
+      <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
+  </xsl:if>
   <label>PGN:</label> <input type="file" name="pgn"/>
 </div>
 
