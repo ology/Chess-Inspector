@@ -63,7 +63,7 @@
     White
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 128">
-    <xsl:attribute name="class">button secondary disabled</xsl:attribute>
+    <xsl:attribute name="class">button disabled</xsl:attribute>
     White to move
   </xsl:if>
   </a>
@@ -83,7 +83,7 @@
     Black
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 0">
-    <xsl:attribute name="class">button secondary disabled</xsl:attribute>
+    <xsl:attribute name="class">button disabled</xsl:attribute>
     Black to move
   </xsl:if>
   </a>
