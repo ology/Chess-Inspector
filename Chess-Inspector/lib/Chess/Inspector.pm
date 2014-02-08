@@ -61,7 +61,13 @@ sub coverage
         }
     }
 
-    $self->fast_append( tag => 'game', data => { to_move => $g->{to_move} } );
+    $self->fast_append(
+        tag => 'game',
+        data => {
+            to_move => $g->{to_move},
+            fen     => $fen,
+        }
+    );
 
     return;
 }
