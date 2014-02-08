@@ -20,11 +20,21 @@
     <tr>
         <xsl:for-each select="cell">
         <td align="center" height="50" width="50">
-            <xsl:if test="@white_can_move > 0">
-                <xsl:attribute name="style">background: lightblue</xsl:attribute>
+            <xsl:if test="//response/game/@to_move > 0">
+                <xsl:if test="@white_can_move > 0">
+                    <xsl:attribute name="style">background: lightblue</xsl:attribute>
+                </xsl:if>
+                <xsl:if test="@black_can_move > 0">
+                    <xsl:attribute name="style">background: tan</xsl:attribute>
+                </xsl:if>
             </xsl:if>
-            <xsl:if test="@black_can_move > 0">
-                <xsl:attribute name="style">background: tan</xsl:attribute>
+            <xsl:if test="//response/game/@to_move = 0">
+                <xsl:if test="@black_can_move > 0">
+                    <xsl:attribute name="style">background: tan</xsl:attribute>
+                </xsl:if>
+                <xsl:if test="@white_can_move > 0">
+                    <xsl:attribute name="style">background: lightblue</xsl:attribute>
+                </xsl:if>
             </xsl:if>
             <xsl:if test="@threatened > 0">
                 <xsl:attribute name="style">background: yellow</xsl:attribute>
@@ -44,39 +54,40 @@
 </div>
 
 <div class="large-3 column">
-<h3>
-White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
-</h3>
-<div class="panel">
-<p>Moves:</p>
-<p>Threatens:</p>
-<p>Protects:</p>
+  <h3>
+  White<xsl:if test="//response/game/@to_move = 128"> to move</xsl:if>
+  </h3>
+  <div class="panel">
+    <p>Moves made: </p>
+    <p>Can move: </p>
+    <p>Threaten: </p>
+    <p>Protect: </p>
+  </div>
 </div>
-</div>
-
 <div class="large-3 column">
-<h3>
-Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
-</h3>
-<div class="panel">
-<p>Moves:</p>
-<p>Threatens:</p>
-<p>Protects:</p>
-</div>
+  <h3>
+  Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
+  </h3>
+  <div class="panel">
+    <p>Moves made: </p>
+    <p>Can move: </p>
+    <p>Threaten: </p>
+    <p>Protect: </p>
+  </div>
 </div>
 
 <div class="large-6 column">
-<form>
-<xsl:variable name="fen" select="//response/game/@fen"/>
-<label>FEN:</label> <input type="text" name="fen" value="{$fen}"/>
-<input type="submit" value="Submit" class="tiny button right"/>
-</form>
+  <form>
+  <xsl:variable name="fen" select="//response/game/@fen"/>
+  <label>FEN:</label> <input type="text" name="fen" value="{$fen}"/>
+  <input type="submit" value="Submit" class="tiny button right"/>
+  </form>
 </div>
 <div class="large-6 column">
-<xsl:if test="//response/game/@pgn">
-    <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
-</xsl:if>
-<label>PGN:</label> <input type="file" name="pgn"/>
+  <xsl:if test="//response/game/@pgn">
+      <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
+  </xsl:if>
+  <label>PGN:</label> <input type="file" name="pgn"/>
 </div>
 
 </div>
@@ -84,13 +95,13 @@ Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
 <div class="row">
 
 <div class="large-6 column">
-<button class="tiny" title="Start">|&#60;</button>
-<button class="tiny" title="Reverse">&#60;&#60;</button>
-<button class="tiny" title="Step-reverse">&#60;</button>
-<button class="tiny" title="Pause">| |</button>
-<button class="tiny" title="Step-forward">&#62;</button>
-<button class="tiny" title="Forward">&#62;&#62;</button>
-<button class="tiny" title="End">&#62;|</button>
+  <button class="tiny" title="Start">|&#60;</button>
+  <button class="tiny" title="Reverse">&#60;&#60;</button>
+  <button class="tiny" title="Step-reverse">&#60;</button>
+  <button class="tiny" title="Pause">| |</button>
+  <button class="tiny" title="Step-forward">&#62;</button>
+  <button class="tiny" title="Forward">&#62;&#62;</button>
+  <button class="tiny" title="End">&#62;|</button>
 </div>
 
 </div>
