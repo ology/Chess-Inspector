@@ -66,8 +66,13 @@ Black<xsl:if test="//response/game/@to_move = 0"> to move</xsl:if>
 </div>
 
 <div class="large-6 column">
+<form>
 <xsl:variable name="fen" select="//response/game/@fen"/>
 <label>FEN:</label> <input type="text" name="fen" value="{$fen}"/>
+<input type="submit" value="Submit" class="tiny button right"/>
+</form>
+</div>
+<div class="large-6 column">
 <xsl:if test="//response/game/@pgn">
     <p>Current = <xsl:value-of select="//response/game/@pgn"/></p>
 </xsl:if>
