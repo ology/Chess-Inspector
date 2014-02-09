@@ -20,7 +20,7 @@
 <xsl:for-each select="//response/board">
     <tr>
         <xsl:for-each select="cell">
-        <td align="center" height="50" width="50">
+        <td align="center" height="53" width="53">
             <xsl:if test="//response/game/@to_move > 0">
                 <xsl:if test="@white_can_move > 0">
                     <xsl:attribute name="style">background: lightblue</xsl:attribute>
@@ -74,9 +74,9 @@
     <p>Can move to: <xsl:value-of select="//response/white/@can_move"/>
     cell<xsl:if test="//response/white/@can_move != 1">s</xsl:if></p>
     <p>Threaten: <xsl:value-of select="//response/white/@threaten"/>
-    piece<xsl:if test="//response/white/@threaten != 1">s</xsl:if></p>
+    time<xsl:if test="//response/white/@threaten != 1">s</xsl:if></p>
     <p>Protect: <xsl:value-of select="//response/white/@protect"/>
-    piece<xsl:if test="//response/white/@protect != 1">s</xsl:if></p>
+    time<xsl:if test="//response/white/@protect != 1">s</xsl:if></p>
   </div>
 </div>
 <div class="large-3 column">
@@ -99,9 +99,9 @@
     <p>Can move to: <xsl:value-of select="//response/black/@can_move"/>
     cell<xsl:if test="//response/black/@can_move != 1">s</xsl:if></p>
     <p>Threaten: <xsl:value-of select="//response/black/@threaten"/>
-    piece<xsl:if test="//response/black/@threaten != 1">s</xsl:if></p>
+    time<xsl:if test="//response/black/@threaten != 1">s</xsl:if></p>
     <p>Protect: <xsl:value-of select="//response/black/@protect"/>
-    piece<xsl:if test="//response/black/@protect != 1">s</xsl:if></p>
+    time<xsl:if test="//response/black/@protect != 1">s</xsl:if></p>
   </div>
 </div>
 
