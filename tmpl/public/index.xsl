@@ -20,7 +20,7 @@
 <xsl:for-each select="//response/board">
     <tr>
         <xsl:for-each select="cell">
-        <td align="center" height="53" width="53">
+        <td align="center" height="55" width="55">
             <xsl:if test="//response/game/@to_move > 0">
                 <xsl:if test="@white_can_move > 0">
                     <xsl:attribute name="style">background: lightblue</xsl:attribute>
