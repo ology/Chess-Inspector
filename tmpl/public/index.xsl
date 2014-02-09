@@ -16,7 +16,7 @@
 
 <div class="large-6 column">
 <h3>Coverage</h3>
-<table border="1">
+<table>
 <xsl:for-each select="//response/board">
     <tr>
         <xsl:for-each select="cell">
@@ -51,14 +51,24 @@
         </xsl:for-each>
     </tr>
     </xsl:for-each>
+
+<tr>
+<td colspan="8" align="center">
+  <a href="/?fen=" class="tiny button" title="Start">|&#60;</a>
+  <a href="" class="tiny button" title="Step-reverse">&#60;</a>
+  <a href="" class="tiny button" title="Step-forward">&#62;</a>
+  <a href="" class="tiny button" title="End">&#62;|</a>
+</td>
+</tr>
 </table>
+
 </div>
 
 <div class="large-3 column">
   <p/>
   <a>
   <xsl:if test="//response/game/@to_move = 0">
-    <xsl:attribute name="class">button</xsl:attribute>
+    <xsl:attribute name="class">button secondary</xsl:attribute>
     <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
@@ -83,7 +93,7 @@
   <p/>
   <a>
   <xsl:if test="//response/game/@to_move = 128">
-    <xsl:attribute name="class">button</xsl:attribute>
+    <xsl:attribute name="class">button secondary</xsl:attribute>
     <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
@@ -113,25 +123,8 @@
   </form>
 </div>
 
-</div>
-
-<div class="row">
-<div class="large-12 column">
-
-<xsl:if test="//response/game/@pgn != 0">
 <div class="large-6 column">
-  <a href="/?fen=" class="tiny button" title="Start">|&#60;</a>
-  <a href="" class="tiny button" title="Reverse">&#60;&#60;</a>
-  <a href="" class="tiny button" title="Step-reverse">&#60;</a>
-  <a href="" class="tiny button" title="Pause">| |</a>
-  <a href="" class="tiny button" title="Step-forward">&#62;</a>
-  <a href="" class="tiny button" title="Forward">&#62;&#62;</a>
-  <a href="" class="tiny button" title="End">&#62;|</a>
   <p>PGN: <xsl:value-of select="//response/game/@pgn"/></p>
-</div>
-</xsl:if>
-
-<div class="large-6 column">
   <form>
   <table>
   <tr>
@@ -142,7 +135,6 @@
   </form>
 </div>
 
-</div>
 </div>
 
  </xsl:template>
