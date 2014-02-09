@@ -52,12 +52,15 @@
     </tr>
     </xsl:for-each>
 
+<xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
+<xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
+<xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
 <tr>
 <td colspan="8" align="center">
-  <a href="/?fen=" class="tiny button" title="Start">|&#60;</a>
-  <a href="" class="tiny button" title="Step-reverse">&#60;</a>
-  <a href="" class="tiny button" title="Step-forward">&#62;</a>
-  <a href="" class="tiny button" title="End">&#62;|</a>
+  <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
+  <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">&#60;</a>
+  <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">&#62;</a>
+  <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">&#62;|</a>
 </td>
 </tr>
 </table>
