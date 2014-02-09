@@ -3,8 +3,10 @@ use strict;
 use warnings FATAL => 'all';
 use parent qw(Chameleon5::Site::Base);
 
+use Chess::Pgn;
 use lib '/Users/gene/sandbox/github/ology/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
+use Chess::Rep;
 
 our $VERSION = '0.01';
 
@@ -25,8 +27,14 @@ sub coverage
 {
     my ($self, %args) = @_;
 
-    my $fen = $self->form('fen') || Chess::Rep::FEN_STANDARD;
-    my $pgn = $self->form('pgn') || undef;
+    my $fen  = $self->form('fen') || Chess::Rep::FEN_STANDARD;
+    my $pgn  = $self->form('pgn') || undef;
+    my $move = $self->form('move') || 0;
+
+    if ( $pgn && $self->form('move') )
+    {
+        $fen = $self->_fen_from_pgn( pgn => $pgn, move => $self->form('move') );
+    }
 
     my $player = {
         white => {
@@ -110,6 +118,8 @@ sub coverage
             to_move => $g->{to_move},
             fen     => $fen,
             pgn     => $pgn ? $pgn : 0,
+            reverse => $move - 1,
+            forward => $move + 1,
         }
     );
 
@@ -128,6 +138,56 @@ sub coverage
     }
 
     return;
+}
+
+sub _fen_from_pgn
+{
+    my ($self, %args) = @_;
+
+    $args{pgn} = '/Users/gene/dev/Games/chess/PGN/sample.pgn';
+
+    # Consume the game moves (only).
+    my $p = Chess::Pgn->new($args{pgn});
+    $p->ReadGame;
+    my $game = $p->game;
+    $game =~ s/\n/ /g; # De-wrap.
+    my @pairs = split /\s*\d+\.\s+/, $game; 
+    my @moves = ();
+    for my $pair (@pairs) {
+        next if $pair =~ /^\s*$/;
+        last if $pair =~ /{/;
+        push @moves, split /\s+/, $pair;
+    }
+
+    my $g = Chess::Rep->new;
+
+    # Declare the FEN.
+    my $fen = '';
+
+    my $i = 0;
+    for my $move (@moves)
+    {
+        # Are we on the selected move?
+        if ( $args{move} == $i )
+        {
+            # Set the FEN.
+            $fen = $g->get_fen;
+
+            # Show our status.
+            $self->logger->debug("$i. $move: $fen");
+
+            # All done!
+            last;
+        }
+
+        # Make the move.
+        $g->go_move($move);
+
+        # Increment our move counter.
+        $i++;
+    }
+
+    return $fen;
 }
 
 1;
