@@ -12,10 +12,18 @@
  </xsl:template>
  <xsl:template match="/" mode="local">
 
+<xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
+<xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
+<xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
+
 <div class="row">
 
 <div class="large-6 column">
-<h3>Coverage</h3>
+<h3>Coverage
+<xsl:if test="//response/game/@pgn != 0">
+for <xsl:value-of select="//response/game/@pgn"/>
+</xsl:if>
+</h3>
 <table>
 <xsl:for-each select="//response/board">
     <tr>
@@ -52,9 +60,6 @@
     </tr>
     </xsl:for-each>
 
-<xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
-<xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
-<xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
 <tr>
 <td colspan="8" align="center">
   <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
@@ -72,7 +77,7 @@
   <a>
   <xsl:if test="//response/game/@to_move = 0">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 128">
@@ -97,7 +102,7 @@
   <a>
   <xsl:if test="//response/game/@to_move = 128">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 0">
@@ -127,7 +132,6 @@
 </div>
 
 <div class="large-6 column">
-  <p>PGN: <xsl:value-of select="//response/game/@pgn"/></p>
   <form>
   <table>
   <tr>
