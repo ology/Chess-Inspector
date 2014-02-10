@@ -31,9 +31,12 @@ sub coverage
     my $pgn  = $self->form('pgn') || undef;
     my $move = $self->form('move') || 0;
 
+    # Total moves in game.
+    my $moves = 0;
+
     if ( $pgn && $self->form('move') )
     {
-        $fen = $self->_fen_from_pgn( pgn => $pgn, move => $self->form('move') );
+        ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $self->form('move') );
     }
 
     my $player = {
@@ -118,10 +121,13 @@ sub coverage
             to_move => $g->{to_move},
             fen     => $fen,
             pgn     => $pgn ? $pgn : 0,
-            reverse => $move - 1,
+            reverse => $move == -1 ? $moves - 1 : $move - 1,
             forward => $move + 1,
         }
     );
+
+    # Reset the moves to the penultimate, if given the last as arg.
+    $move = $moves if $move == -1;
 
     # Compute the player moves made.
     if ( $move % 2 )
@@ -172,6 +178,9 @@ sub _fen_from_pgn
         push @moves, split /\s+/, $pair;
     }
 
+    # Reset the move to the penultimate, if given the last as arg.
+    $args{move} = $#moves - 1 if $args{move} == -1;
+
     my $g = Chess::Rep->new;
 
     # Declare the FEN.
@@ -200,7 +209,7 @@ sub _fen_from_pgn
         $i++;
     }
 
-    return $fen;
+    return $fen, $#moves - 1;
 }
 
 1;
