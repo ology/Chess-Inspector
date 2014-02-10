@@ -123,6 +123,19 @@ sub coverage
         }
     );
 
+    # Compute the player moves made.
+    if ( $move % 2 )
+    {
+        $player->{black}{moves_made} = ( $move - 1 ) / 2;
+        $player->{white}{moves_made} = $player->{black}{moves_made} + 1;
+    }
+    else
+    {
+        $player->{white}{moves_made} = $move / 2;
+        $player->{black}{moves_made} = $player->{white}{moves_made};
+    }
+
+
     # Add player status to the response.
     for my $color (qw( white black ))
     {
