@@ -77,7 +77,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
   <a>
   <xsl:if test="//response/game/@to_move = 0">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 128">
@@ -102,7 +102,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
   <a>
   <xsl:if test="//response/game/@to_move = 128">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 0">
