@@ -18,6 +18,8 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
+        'Chess::Pgn' => 0,
+        'Chess::Rep' => 0,
         'Chess::Rep::Coverage' => 0.1003,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
