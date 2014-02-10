@@ -135,7 +135,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
   <form>
   <table>
   <tr>
-  <td><input type="submit" value="PGN" class="tiny button"/></td>
+  <td><input type="submit" value="New PGN" class="tiny button"/></td>
   <td><input type="file" name="pgn"/></td>
   </tr>
   </table>
