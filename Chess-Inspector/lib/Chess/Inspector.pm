@@ -28,23 +28,8 @@ sub coverage
     my ($self, %args) = @_;
 
     my $fen  = $self->form('fen') || Chess::Rep::FEN_STANDARD;
-    my $pgn  = $self->form('pgn') || undef;
+    my $pgn  = $self->form('pgn') || 'Immortal';
     my $move = $self->form('move') || 0;
-
-    my %chessfont = (
-        wk => '&#9812;',
-        wq => '&#9813;',
-        wr => '&#9814;',
-        wb => '&#9815;',
-        wn => '&#9816;',
-        wp => '&#9817;',
-        bk => '&#9818;',
-        bq => '&#9819;',
-        br => '&#9820;',
-        bb => '&#9821;',
-        bn => '&#9822;',
-        bp => '&#9823;',
-    );
 
     # Total moves in game.
     my $moves = 0;
@@ -81,6 +66,21 @@ sub coverage
     $g->set_from_fen($fen);
     my $c = $g->coverage();
 #use Data::Dumper; $self->logger->debug(Dumper $c);
+
+    my %chessfont = (
+        wk => '&#9812;',
+        wq => '&#9813;',
+        wr => '&#9814;',
+        wb => '&#9815;',
+        wn => '&#9816;',
+        wp => '&#9817;',
+        bk => '&#9818;',
+        bq => '&#9819;',
+        br => '&#9820;',
+        bb => '&#9821;',
+        bn => '&#9822;',
+        bp => '&#9823;',
+    );
 
     for my $row (1 .. 8)
     {
@@ -182,8 +182,8 @@ sub _fen_from_pgn
 {
     my ($self, %args) = @_;
 
-    my $path = $self->env->{'chameleon.domain_root'} . 'site_root/pgn/';
-    $args{pgn} = $path . 'Immortal.pgn';
+    # Assume that the PGN is given as a filename without the extension.
+    $args{pgn} = $self->env->{'chameleon.domain_root'} . 'site_root/pgn/' . $args{pgn} . '.pgn';
 
     # Consume the game moves (only).
     my $p = Chess::Pgn->new($args{pgn});
