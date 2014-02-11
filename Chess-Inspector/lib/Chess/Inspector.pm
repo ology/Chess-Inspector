@@ -37,7 +37,7 @@ sub coverage
 
     if ( $move && !$toggle )
     {
-        # Set position and move.
+        # Set position and number of moves made.
         ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
     }
 
