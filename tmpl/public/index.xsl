@@ -54,7 +54,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
             <xsl:if test="@threatened > 0 and @protected > 0">
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
-            <xsl:value-of select="@piece"/>
+            <xsl:value-of disable-output-escaping="yes" select="@piece"/>
         </td>
         </xsl:for-each>
     </tr>
