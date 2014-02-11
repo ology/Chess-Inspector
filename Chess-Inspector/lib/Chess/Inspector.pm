@@ -49,7 +49,7 @@ sub coverage
     # Total moves in game.
     my $moves = 0;
 
-    if ( $pgn && $self->form('move') )
+    if ( $self->form('move') )
     {
         ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $self->form('move') );
     }
@@ -139,7 +139,7 @@ sub coverage
         data => {
             to_move => $g->{to_move},
             fen     => $fen,
-            pgn     => $pgn ? $pgn : 0,
+            pgn     => $pgn,
             reverse => $move == -1 ? $moves - 1 : $move - 1,
             forward => $move + 1,
         }
