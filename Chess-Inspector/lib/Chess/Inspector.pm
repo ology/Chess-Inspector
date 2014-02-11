@@ -27,16 +27,18 @@ sub coverage
 {
     my ($self, %args) = @_;
 
-    my $fen  = $self->form('fen') || Chess::Rep::FEN_STANDARD;
-    my $pgn  = $self->form('pgn') || 'Immortal';
-    my $move = $self->form('move') || 0;
+    my $fen    = $self->form('fen')    || Chess::Rep::FEN_STANDARD;
+    my $pgn    = $self->form('pgn')    || 'Immortal';
+    my $move   = $self->form('move')   || 0;
+    my $toggle = $self->form('toggle') || 0;
 
     # Total moves in game.
     my $moves = 0;
 
-    if ( $self->form('move') )
+    if ( $pgn && $move && !$toggle)
     {
-        ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $self->form('move') );
+        # Set position and move.
+        ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
     }
 
     my $player = {
@@ -55,11 +57,12 @@ sub coverage
     };
 
     # Toggle black or white.
-    if ( $self->form('toggle') && $fen =~ /^(.+?) (w|b) (.+)$/ )
+    if ( $toggle && $fen =~ /^(.+?) (w|b) (.+)$/ )
     {
         $fen = $1;
         $fen .= $2 eq 'w' ? ' b ' : ' w ';
         $fen .= $3;
+$self->logger->debug("HELLO: '$2' - $fen");
     }
 
     my $g = Chess::Rep::Coverage->new;
