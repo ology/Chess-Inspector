@@ -12,18 +12,13 @@
  </xsl:template>
  <xsl:template match="/" mode="local">
 
-<xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
 <xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
 <xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
 
 <div class="row">
 
 <div class="large-6 column">
-<h3>Coverage
-<xsl:if test="//response/game/@pgn != 0">
-for <xsl:value-of select="//response/game/@pgn"/>
-</xsl:if>
-</h3>
+<h3>Coverage</h3>
 <table>
 <xsl:for-each select="//response/board">
     <tr>
@@ -62,10 +57,10 @@ for <xsl:value-of select="//response/game/@pgn"/>
 
 <tr>
 <td colspan="8" align="center">
-  <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
-  <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">&#60;</a>
-  <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">&#62;</a>
-  <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">&#62;|</a>
+  <a href="/?move=0" class="tiny button" title="Start">|&#60;</a>
+  <a href="/?move={$reverse}" class="tiny button" title="Step back">&#60;</a>
+  <a href="/?move={$forward}" class="tiny button" title="Step forward">&#62;</a>
+  <a href="/?move=-1" class="tiny button" title="End">&#62;|</a>
 </td>
 </tr>
 </table>
@@ -77,7 +72,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
   <a>
   <xsl:if test="//response/game/@to_move = 0">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 128">
@@ -102,7 +97,7 @@ for <xsl:value-of select="//response/game/@pgn"/>
   <a>
   <xsl:if test="//response/game/@to_move = 128">
     <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;pgn=<xsl:value-of select="$pgn"/>;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
+    <xsl:attribute name="href">/?toggle=1;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 0">
@@ -125,20 +120,12 @@ for <xsl:value-of select="//response/game/@pgn"/>
 
 <div class="large-6 column">
   <form>
+  <select name="pgn">
+    <option value="Immortal">Immortal</option>
+  </select>
   <xsl:variable name="fen" select="//response/game/@fen"/>
   <input type="text" name="fen" value="{$fen}"/>
-  <input type="submit" value="FEN" class="tiny button right"/>
-  </form>
-</div>
-
-<div class="large-6 column">
-  <form>
-  <table>
-  <tr>
-  <td><input type="submit" value="New PGN" class="tiny button"/></td>
-  <td><input type="file" name="pgn"/></td>
-  </tr>
-  </table>
+  <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
 
