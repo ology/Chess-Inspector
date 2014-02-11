@@ -69,17 +69,14 @@
 
 <div class="large-3 column">
   <p/>
-  <a>
+  <h3>
   <xsl:if test="//response/game/@to_move = 0">
-    <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     White
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 128">
-    <xsl:attribute name="class">button disabled</xsl:attribute>
     White to move
   </xsl:if>
-  </a>
+  </h3>
   <div class="panel">
     <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
@@ -94,17 +91,14 @@
 </div>
 <div class="large-3 column">
   <p/>
-  <a>
+  <h3>
   <xsl:if test="//response/game/@to_move = 128">
-    <xsl:attribute name="class">button secondary</xsl:attribute>
-    <xsl:attribute name="href">/?toggle=1;move=<xsl:value-of select="$forward - 1"/>;fen=<xsl:value-of select="//response/game/@fen"/></xsl:attribute>
     Black
   </xsl:if>
   <xsl:if test="//response/game/@to_move = 0">
-    <xsl:attribute name="class">button disabled</xsl:attribute>
     Black to move
   </xsl:if>
-  </a>
+  </h3>
   <div class="panel">
     <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
