@@ -35,7 +35,7 @@ sub coverage
     # Total moves in game.
     my $moves = 0;
 
-    if ( $pgn && $move && !$toggle)
+    if ( $move && !$toggle )
     {
         # Set position and move.
         ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
