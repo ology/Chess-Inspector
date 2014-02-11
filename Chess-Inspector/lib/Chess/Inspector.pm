@@ -32,9 +32,6 @@ sub coverage
     my $move   = $self->form('move')   || 0;
     my $toggle = $self->form('toggle') || 0;
 
-    # Make sure the move is sane.
-    $move = 0 if $move < -1;
-
     # Total moves in game.
     my $moves = 0;
 
@@ -65,7 +62,6 @@ sub coverage
         $fen = $1;
         $fen .= $2 eq 'w' ? ' b ' : ' w ';
         $fen .= $3;
-$self->logger->debug("HELLO: '$2' - $fen");
     }
 
     my $g = Chess::Rep::Coverage->new;
