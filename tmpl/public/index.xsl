@@ -121,6 +121,7 @@
   </select>
   <xsl:variable name="fen" select="//response/game/@fen"/>
   <input type="text" name="fen" value="{$fen}"/>
+  <a href="/?move={$forward - 1};toggle=1" class="tiny button" title="Toggle perspective">Toggle perspective</a>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
