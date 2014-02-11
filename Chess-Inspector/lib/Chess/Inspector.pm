@@ -31,6 +31,21 @@ sub coverage
     my $pgn  = $self->form('pgn') || undef;
     my $move = $self->form('move') || 0;
 
+    my %chessfont = (
+        wk => '&#9812;',
+        wq => '&#9813;',
+        wr => '&#9814;',
+        wb => '&#9815;',
+        wn => '&#9816;',
+        wp => '&#9817;',
+        bk => '&#9818;',
+        bq => '&#9819;',
+        br => '&#9820;',
+        bb => '&#9821;',
+        bn => '&#9822;',
+        bp => '&#9823;',
+    );
+
     # Total moves in game.
     my $moves = 0;
 
@@ -54,6 +69,7 @@ sub coverage
         }
     };
 
+    # Toggle black or white.
     if ( $self->form('toggle') && $fen =~ /^(.+?) (w|b) (.+)$/ )
     {
         $fen = $1;
@@ -76,8 +92,11 @@ sub coverage
             my $key = $col . $row;
 
             # Compute the cell occupancy, protection, threat & move state.
+            # TODO Use the rep bitmask instead of this hack.
             my $piece = exists $c->{$key}{occupant}
                 ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant} : '';
+            # Convert to a single chess piece character.
+#            $piece = $chessfont{$piece};
             my $protect = exists $c->{$key}{is_protected_by}
                 ? scalar @{ $c->{$key}{is_protected_by} }     : 0;
             my $threat = exists $c->{$key}{is_threatened_by}
@@ -163,7 +182,8 @@ sub _fen_from_pgn
 {
     my ($self, %args) = @_;
 
-    $args{pgn} = '/Users/gene/dev/Games/chess/PGN/sample.pgn';
+    my $path = $self->env->{'chameleon.domain_root'} . 'site_root/pgn/';
+    $args{pgn} = $path . 'Immortal.pgn';
 
     # Consume the game moves (only).
     my $p = Chess::Pgn->new($args{pgn});
