@@ -80,9 +80,7 @@
   </xsl:if>
   </h3>
   <div class="panel">
-    <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
-    </xsl:if>
     <p>Can move to: <xsl:value-of select="//response/white/@can_move"/>
     cell<xsl:if test="//response/white/@can_move != 1">s</xsl:if></p>
     <p>Threaten: <xsl:value-of select="//response/white/@threaten"/>
@@ -102,9 +100,7 @@
   </xsl:if>
   </h3>
   <div class="panel">
-    <xsl:if test="//response/game/@pgn != 0">
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
-    </xsl:if>
     <p>Can move to: <xsl:value-of select="//response/black/@can_move"/>
     cell<xsl:if test="//response/black/@can_move != 1">s</xsl:if></p>
     <p>Threaten: <xsl:value-of select="//response/black/@threaten"/>
