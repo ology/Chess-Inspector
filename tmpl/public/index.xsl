@@ -49,7 +49,9 @@
             <xsl:if test="@threatened > 0 and @protected > 0">
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
+            <span style="font-size: 200%">
             <xsl:value-of disable-output-escaping="yes" select="@piece"/>
+            </span>
         </td>
         </xsl:for-each>
     </tr>
