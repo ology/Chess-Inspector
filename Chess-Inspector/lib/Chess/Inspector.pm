@@ -32,6 +32,9 @@ sub coverage
     my $move   = $self->form('move')   || 0;
     my $toggle = $self->form('toggle') || 0;
 
+    # Make sure the move is sane.
+    $move = 0 if $move < -1;
+
     # Total moves in game.
     my $moves = 0;
 
