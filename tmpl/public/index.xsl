@@ -18,7 +18,7 @@
 <div class="row">
 
 <div class="large-6 column">
-<h3>Coverage</h3>
+<h3>Chess::Inspector</h3>
 <table>
 <xsl:for-each select="//response/board">
     <tr>
