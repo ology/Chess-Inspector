@@ -41,6 +41,19 @@ sub coverage
         ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
     }
 
+    # Toggle black or white.
+    if ( $toggle && $fen =~ /^(.+?) (w|b) (.+)$/ )
+    {
+        $fen = $1;
+        $fen .= $2 eq 'w' ? ' b ' : ' w ';
+        $fen .= $3;
+    }
+
+    my $g = Chess::Rep::Coverage->new;
+    $g->set_from_fen($fen);
+    my $c = $g->coverage();
+#use Data::Dumper; $self->logger->debug(Dumper $c);
+
     my $player = {
         white => {
             moves_made => 0,
@@ -55,19 +68,6 @@ sub coverage
             protect    => 0,
         }
     };
-
-    # Toggle black or white.
-    if ( $toggle && $fen =~ /^(.+?) (w|b) (.+)$/ )
-    {
-        $fen = $1;
-        $fen .= $2 eq 'w' ? ' b ' : ' w ';
-        $fen .= $3;
-    }
-
-    my $g = Chess::Rep::Coverage->new;
-    $g->set_from_fen($fen);
-    my $c = $g->coverage();
-#use Data::Dumper; $self->logger->debug(Dumper $c);
 
     my %chessfont = (
         wk => '&#9812;',
@@ -143,7 +143,7 @@ sub coverage
             fen     => $fen,
             pgn     => $pgn,
             reverse => $move == -1 ? $moves - 1 : $move - 1,
-            forward => $move + 1,
+            forward => $move > $moves + 1 ? 0 : $move + 1,
         }
     );
 
@@ -201,7 +201,7 @@ sub _fen_from_pgn
     }
 
     # Reset the move to the penultimate, if given the last as arg.
-    $args{move} = $#moves - 1 if $args{move} == -1;
+    $args{move} = $#moves if $args{move} == -1;
 
     my $g = Chess::Rep->new;
 
@@ -231,7 +231,7 @@ sub _fen_from_pgn
         $i++;
     }
 
-    return $fen, $#moves - 1;
+    return $fen, $#moves;
 }
 
 1;
