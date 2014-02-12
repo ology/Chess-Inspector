@@ -26,6 +26,10 @@
     <script>
         $(document).ready(function() {
             $("td").click(function( event ) {
+                id = $(this).attr('id');
+                if (id) {
+                    alert($(this).attr('id'));
+                }
                 color = $(this).css("color");
                 if ( color == "rgb(34, 34, 34)" || color == "rgb(0, 0, 0)" ) {
                     $(this).css("color", "red");
