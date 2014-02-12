@@ -34,7 +34,7 @@
                     <xsl:attribute name="style">background: lightblue</xsl:attribute>
                 </xsl:if>
                 <xsl:if test="@white_can_move > 0 and @black_can_move > 0">
-                    <xsl:attribute name="style">background: lightblue; border: 4px solid tan</xsl:attribute>
+                    <xsl:attribute name="style">background: lightblue; border: 5px solid tan</xsl:attribute>
                 </xsl:if>
             </xsl:if>
             <xsl:if test="//response/game/@to_move = 0">
@@ -45,7 +45,7 @@
                     <xsl:attribute name="style">background: tan</xsl:attribute>
                 </xsl:if>
                 <xsl:if test="@black_can_move > 0 and @white_can_move > 0">
-                    <xsl:attribute name="style">background: tan; border: 4px solid lightblue</xsl:attribute>
+                    <xsl:attribute name="style">background: tan; border: 5px solid lightblue</xsl:attribute>
                 </xsl:if>
             </xsl:if>
             <xsl:if test="@threatened > 0">
