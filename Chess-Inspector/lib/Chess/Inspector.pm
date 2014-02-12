@@ -49,14 +49,14 @@ sub coverage
 
     my $player = {
         white => {
-            name       => $white,
+            name       => (split / /, $white)[-1],
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
             protect    => 0,
         },
         black => {
-            name       => $black,
+            name       => (split / /, $black)[-1],
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
@@ -166,7 +166,7 @@ sub coverage
         $player->{white}{moves_made} = $move / 2;
         $player->{black}{moves_made} = $player->{white}{moves_made};
     }
-
+use Data::Dumper; $self->logger->debug(Dumper $player);
 
     # Add player status to the response.
     for my $color (qw( white black ))
