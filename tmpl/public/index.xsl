@@ -24,7 +24,8 @@
 <xsl:for-each select="//response/board">
     <tr>
         <xsl:for-each select="cell">
-        <td align="center" height="55" width="55">
+        <xsl:variable name="rowcol"><xsl:value-of select="@row"/><xsl:value-of select="@col"/></xsl:variable>
+        <td id="{$rowcol}" align="center" height="55" width="55">
             <xsl:if test="//response/game/@to_move > 0">
                 <xsl:if test="@black_can_move > 0">
                     <xsl:attribute name="style">background: tan</xsl:attribute>
