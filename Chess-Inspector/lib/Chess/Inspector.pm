@@ -28,14 +28,14 @@ sub coverage
     my ($self, %args) = @_;
 
     my $fen    = $self->form('fen')    || Chess::Rep::FEN_STANDARD;
-    my $pgn    = $self->form('pgn')    || 'Immortal';
+    my $pgn    = $self->form('pgn')    || '';
     my $move   = $self->form('move')   || 0;
     my $toggle = $self->form('toggle') || 0;
 
     # Total moves in game.
     my $moves = 0;
 
-    if ( $move && !$toggle )
+    if ( $pgn && $move && !$toggle )
     {
         # Set position and number of moves made.
         ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
@@ -137,7 +137,7 @@ sub coverage
 
     # Add the game state to the response.
     $self->fast_append(
-        tag => 'game',
+        tag  => 'game',
         data => {
             to_move => $g->{to_move},
             fen     => $fen,
@@ -146,6 +146,15 @@ sub coverage
             forward => $move > $moves + 1 ? 0 : $move + 1,
         }
     );
+
+    # TODO Grab PGN files from the PGN directory instead!
+    for my $game (qw( Game-of-the-Century Immortal ))
+    {
+        $self->fast_append(
+            tag  => 'games',
+            data => { name => $game, selected => $game eq $pgn ? $game : 0 }
+        );
+    }
 
     # Reset the moves to the penultimate, if given the last as arg.
     $move = $moves if $move == -1;
