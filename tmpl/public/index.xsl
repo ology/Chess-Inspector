@@ -12,6 +12,7 @@
  </xsl:template>
  <xsl:template match="/" mode="local">
 
+<xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
 <xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
 <xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
 
@@ -59,10 +60,10 @@
 
 <tr>
 <td colspan="8" align="center">
-  <a href="/?move=0" class="tiny button" title="Start">|&#60;</a>
-  <a href="/?move={$reverse}" class="tiny button" title="Step back">&#60;</a>
-  <a href="/?move={$forward}" class="tiny button" title="Step forward">&#62;</a>
-  <a href="/?move=-1" class="tiny button" title="End">&#62;|</a>
+  <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
+  <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">&#60;</a>
+  <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">&#62;</a>
+  <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">&#62;|</a>
 </td>
 </tr>
 </table>
@@ -113,7 +114,16 @@
 <div class="large-6 column">
   <form>
   <select name="pgn">
-    <option value="Immortal">Immortal</option>
+    <option value="">Select a game</option>
+    <xsl:for-each select="//response/games">
+        <xsl:variable name="name"><xsl:value-of select="@name"/></xsl:variable>
+    <option value="{$name}">
+        <xsl:if test="@selected = $name">
+            <xsl:attribute name="selected" value="1"/>
+        </xsl:if>
+        <xsl:value-of select="$name"/>
+    </option>
+    </xsl:for-each>
   </select>
   <xsl:variable name="fen" select="//response/game/@fen"/>
   <input type="text" name="fen" value="{$fen}"/>
