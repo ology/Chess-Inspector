@@ -22,8 +22,19 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
+    <script>$(document).foundation();</script>
     <script>
-      $(document).foundation();
+        $(document).ready(function() {
+            $("td").click(function( event ) {
+                color = $(this).css("color");
+                if ( color == "rgb(34, 34, 34)" || color == "rgb(0, 0, 0)" ) {
+                    $(this).css("color", "red");
+                }
+                else {
+                    $(this).css("color", "black");
+                }
+            });
+        });
     </script>
    </body>
   </html>
