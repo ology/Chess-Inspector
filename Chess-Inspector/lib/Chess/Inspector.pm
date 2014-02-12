@@ -174,6 +174,7 @@ sub coverage
         $self->fast_append(
             tag => $color,
             data => {
+                name       => $player->{$color}{name},
                 moves_made => $player->{$color}{moves_made},
                 can_move   => $player->{$color}{can_move},
                 threaten   => $player->{$color}{threaten},
