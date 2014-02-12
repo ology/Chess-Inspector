@@ -26,19 +26,25 @@
         <xsl:for-each select="cell">
         <td align="center" height="55" width="55">
             <xsl:if test="//response/game/@to_move > 0">
+                <xsl:if test="@black_can_move > 0">
+                    <xsl:attribute name="style">background: tan</xsl:attribute>
+                </xsl:if>
                 <xsl:if test="@white_can_move > 0">
                     <xsl:attribute name="style">background: lightblue</xsl:attribute>
                 </xsl:if>
-                <xsl:if test="@black_can_move > 0">
-                    <xsl:attribute name="style">background: tan</xsl:attribute>
+                <xsl:if test="@white_can_move > 0 and @black_can_move > 0">
+                    <xsl:attribute name="style">background: lightblue; border: 4px solid tan</xsl:attribute>
                 </xsl:if>
             </xsl:if>
             <xsl:if test="//response/game/@to_move = 0">
+                <xsl:if test="@white_can_move > 0">
+                    <xsl:attribute name="style">background: lightblue</xsl:attribute>
+                </xsl:if>
                 <xsl:if test="@black_can_move > 0">
                     <xsl:attribute name="style">background: tan</xsl:attribute>
                 </xsl:if>
-                <xsl:if test="@white_can_move > 0">
-                    <xsl:attribute name="style">background: lightblue</xsl:attribute>
+                <xsl:if test="@black_can_move > 0 and @white_can_move > 0">
+                    <xsl:attribute name="style">background: tan; border: 4px solid lightblue</xsl:attribute>
                 </xsl:if>
             </xsl:if>
             <xsl:if test="@threatened > 0">
@@ -125,9 +131,6 @@
     </option>
     </xsl:for-each>
   </select>
-  <xsl:variable name="fen" select="//response/game/@fen"/>
-  <input type="text" name="fen" value="{$fen}"/>
-  <a href="/?move={$forward - 1};toggle=1;fen={$fen}" class="tiny button" title="Toggle perspective">Toggle perspective</a>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
