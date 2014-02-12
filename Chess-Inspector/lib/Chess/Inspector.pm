@@ -34,10 +34,12 @@ sub coverage
     # Total moves in game.
     my $moves = 0;
 
+    my ( $white, $black ) = ('', '');
+
     if ($move)
     {
         # Set position and number of moves made.
-        ( $fen, $moves ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
+        ( $fen, $moves, $white, $black ) = $self->_fen_from_pgn( pgn => $pgn, move => $move );
     }
 
     my $g = Chess::Rep::Coverage->new;
@@ -47,12 +49,14 @@ sub coverage
 
     my $player = {
         white => {
+            name       => $white,
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
             protect    => 0,
         },
         black => {
+            name       => $black,
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
@@ -114,6 +118,7 @@ sub coverage
                 parent => $parent,
                 tag    => 'cell',
                 data   => {
+                    row            => $row,
                     col            => $col,
                     piece          => $piece,
                     # Add one to protected to thicken the CSS border.
@@ -231,7 +236,7 @@ sub _fen_from_pgn
         $i++;
     }
 
-    return $fen, $#moves;
+    return $fen, $#moves, $p->white, $p->black;
 }
 
 1;
