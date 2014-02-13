@@ -121,8 +121,7 @@ sub coverage
                     row            => $row,
                     col            => $col,
                     piece          => $piece,
-                    # Add one to protected to thicken the CSS border.
-                    protected      => $protect ? $protect + 1 : 0,
+                    protected      => $protect,
                     threatened     => $threat,
                     white_can_move => $wmove,
                     black_can_move => $bmove,
@@ -166,7 +165,6 @@ sub coverage
         $player->{white}{moves_made} = $move / 2;
         $player->{black}{moves_made} = $player->{white}{moves_made};
     }
-use Data::Dumper; $self->logger->debug(Dumper $player);
 
     # Add player status to the response.
     for my $color (qw( white black ))
