@@ -27,9 +27,9 @@ sub coverage
 {
     my ($self, %args) = @_;
 
-    my $fen    = $self->form('fen')  || Chess::Rep::FEN_STANDARD;
-    my $pgn    = $self->form('pgn')  || '';
-    my $move   = $self->form('move') || 0;
+    my $fen  = $self->form('fen')  || Chess::Rep::FEN_STANDARD;
+    my $pgn  = $self->form('pgn')  || '';
+    my $move = $self->form('move') || 0;
 
     # Total moves in game.
     my $moves = 0;
