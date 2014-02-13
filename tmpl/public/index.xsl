@@ -88,6 +88,7 @@
   </xsl:if>
   </h3>
   <div class="panel">
+    <p>Player: <xsl:value-of select="//response/white/@name"/></p>
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
     <p>Can move to: <xsl:value-of select="//response/white/@can_move"/>
     cell<xsl:if test="//response/white/@can_move != 1">s</xsl:if></p>
@@ -108,6 +109,7 @@
   </xsl:if>
   </h3>
   <div class="panel">
+    <p>Player: <xsl:value-of select="//response/black/@name"/></p>
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
     <p>Can move to: <xsl:value-of select="//response/black/@can_move"/>
     cell<xsl:if test="//response/black/@can_move != 1">s</xsl:if></p>
@@ -132,6 +134,8 @@
     </option>
     </xsl:for-each>
   </select>
+  <xsl:variable name="fen"><xsl:value-of select="//response/game/@fen"/></xsl:variable>
+  <input type="text" name="fen" value="{$fen}"/>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
