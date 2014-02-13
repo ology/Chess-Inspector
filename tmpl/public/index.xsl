@@ -90,11 +90,11 @@
   <div class="panel">
     <p>Player: <xsl:value-of select="//response/white/@name"/></p>
     <p>Moves made: <xsl:value-of select="//response/white/@moves_made"/></p>
-    <p>Can move to: <xsl:value-of select="//response/white/@can_move"/>
+    <p style="background: lightblue; padding: 5px">Can move to: <xsl:value-of select="//response/white/@can_move"/>
     cell<xsl:if test="//response/white/@can_move != 1">s</xsl:if></p>
-    <p>Threaten: <xsl:value-of select="//response/white/@threaten"/>
+    <p style="background: yellow; padding: 5px">Threaten: <xsl:value-of select="//response/white/@threaten"/>
     time<xsl:if test="//response/white/@threaten != 1">s</xsl:if></p>
-    <p>Protect: <xsl:value-of select="//response/white/@protect"/>
+    <p style="border: 3px solid green; padding: 5px">Protect: <xsl:value-of select="//response/white/@protect"/>
     time<xsl:if test="//response/white/@protect != 1">s</xsl:if></p>
   </div>
 </div>
@@ -111,11 +111,11 @@
   <div class="panel">
     <p>Player: <xsl:value-of select="//response/black/@name"/></p>
     <p>Moves made: <xsl:value-of select="//response/black/@moves_made"/></p>
-    <p>Can move to: <xsl:value-of select="//response/black/@can_move"/>
+    <p style="background: tan; padding: 5px">Can move to: <xsl:value-of select="//response/black/@can_move"/>
     cell<xsl:if test="//response/black/@can_move != 1">s</xsl:if></p>
-    <p>Threaten: <xsl:value-of select="//response/black/@threaten"/>
+    <p style="background: yellow; padding: 5px">Threaten: <xsl:value-of select="//response/black/@threaten"/>
     time<xsl:if test="//response/black/@threaten != 1">s</xsl:if></p>
-    <p>Protect: <xsl:value-of select="//response/black/@protect"/>
+    <p style="border: 3px solid green; padding: 5px">Protect: <xsl:value-of select="//response/black/@protect"/>
     time<xsl:if test="//response/black/@protect != 1">s</xsl:if></p>
   </div>
 </div>
