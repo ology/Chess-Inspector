@@ -59,18 +59,27 @@
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
             <a href="/?position={$rowcol};pgn={$pgn};move={$forward - 1}">
-            <xsl:if test="@piece">
+            <xsl:choose>
+              <xsl:when test="$rowcol = @position">
+                <xsl:attribute name="style">color: red; font-size: 200%; text-decoration: none</xsl:attribute>
+                <xsl:if test="@piece">
+                <xsl:value-of disable-output-escaping="yes" select="@piece"/>
+                </xsl:if>
+                <xsl:if test="@piece = ''">X</xsl:if>
+              </xsl:when>
+              <xsl:when test="@piece = ''">
+                <xsl:attribute name="style">color: blue; font-size: 200%; text-decoration: none</xsl:attribute>
+                X
+              </xsl:when>
+              <xsl:when test="@piece">
                 <xsl:attribute name="style">color: black; font-size: 200%; text-decoration: none</xsl:attribute>
                 <xsl:value-of disable-output-escaping="yes" select="@piece"/>
-            </xsl:if>
-            <xsl:if test="@piece = $rowcol">
-                <xsl:attribute name="style">color: red; font-size: 200%; text-decoration: none</xsl:attribute>
-                <xsl:value-of disable-output-escaping="yes" select="@piece"/>
-            </xsl:if>
-            <xsl:if test="@piece = ''">
-                <xsl:attribute name="style">color: transparent; font-size: 200%; text-decoration: none</xsl:attribute>
-                X
-            </xsl:if>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="style">color: gray; font-size: 200%; text-decoration: none</xsl:attribute>
+                ?
+              </xsl:otherwise>
+            </xsl:choose>
             </a>
         </td>
         </xsl:for-each>
