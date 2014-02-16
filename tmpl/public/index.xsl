@@ -68,17 +68,13 @@
                 <xsl:if test="@piece = ''">X</xsl:if>
               </xsl:when>
               <xsl:when test="@piece = ''">
-                <xsl:attribute name="style">color: blue; font-size: 200%; text-decoration: none</xsl:attribute>
-                X
-              </xsl:when>
+                <xsl:attribute name="style">color: transparent; font-size: 200%; text-decoration: none</xsl:attribute>X</xsl:when>
               <xsl:when test="@piece">
                 <xsl:attribute name="style">color: black; font-size: 200%; text-decoration: none</xsl:attribute>
                 <xsl:value-of disable-output-escaping="yes" select="@piece"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:attribute name="style">color: gray; font-size: 200%; text-decoration: none</xsl:attribute>
-                ?
-              </xsl:otherwise>
+                <xsl:attribute name="style">color: blue; font-size: 200%; text-decoration: none</xsl:attribute>?</xsl:otherwise>
             </xsl:choose>
             </a>
         </td>
