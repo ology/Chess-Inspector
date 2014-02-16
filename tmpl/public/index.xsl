@@ -57,22 +57,30 @@
             <xsl:if test="@threatened > 0 and @protected > 0">
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
-            <span style="font-size: 200%">
-            <xsl:value-of disable-output-escaping="yes" select="@piece"/>
-            </span>
+            <a href="/{$rowcol}/" style="color: black; text-decoration: none;">
+            <xsl:if test="@piece">
+                <span style="font-size: 200%">
+                <xsl:value-of disable-output-escaping="yes" select="@piece"/>
+                </span>
+            </xsl:if>
+            <xsl:if test="@piece = ''">
+                <span style="color: transparent; font-size: 200%">X</span>
+            </xsl:if>
+            </a>
         </td>
         </xsl:for-each>
     </tr>
     </xsl:for-each>
 
-<tr>
-<td colspan="8" align="center">
-  <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
-  <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">&#60;</a>
-  <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">&#62;</a>
-  <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">&#62;|</a>
-</td>
-</tr>
+    <tr>
+    <td colspan="8" align="center">
+      <a href="/?pgn={$pgn};move=0" class="tiny button" title="Start">|&#60;</a>
+      <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">&#60;</a>
+      <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">&#62;</a>
+      <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">&#62;|</a>
+    </td>
+    </tr>
+
 </table>
 
 </div>
