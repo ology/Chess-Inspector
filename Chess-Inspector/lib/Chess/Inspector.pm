@@ -120,6 +120,7 @@ sub coverage
                 data   => {
                     row            => $row,
                     col            => $col,
+                    position       => $self->form('position'),
                     piece          => $piece,
                     protected      => $protect,
                     threatened     => $threat,
