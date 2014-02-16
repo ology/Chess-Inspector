@@ -12,6 +12,7 @@
  </xsl:template>
  <xsl:template match="/" mode="local">
 
+<xsl:variable name="fen"><xsl:value-of select="//response/game/@fen"/></xsl:variable>
 <xsl:variable name="pgn"><xsl:value-of select="//response/game/@pgn"/></xsl:variable>
 <xsl:variable name="reverse"><xsl:value-of select="//response/game/@reverse"/></xsl:variable>
 <xsl:variable name="forward"><xsl:value-of select="//response/game/@forward"/></xsl:variable>
@@ -57,14 +58,18 @@
             <xsl:if test="@threatened > 0 and @protected > 0">
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
-            <a href="/{$rowcol}/" style="color: black; text-decoration: none;">
+            <a href="/?position={$rowcol};pgn={$pgn};move={$forward - 1}">
             <xsl:if test="@piece">
-                <span style="font-size: 200%">
+                <xsl:attribute name="style">color: black; font-size: 200%; text-decoration: none</xsl:attribute>
                 <xsl:value-of disable-output-escaping="yes" select="@piece"/>
-                </span>
+            </xsl:if>
+            <xsl:if test="@piece = $rowcol">
+                <xsl:attribute name="style">color: red; font-size: 200%; text-decoration: none</xsl:attribute>
+                <xsl:value-of disable-output-escaping="yes" select="@piece"/>
             </xsl:if>
             <xsl:if test="@piece = ''">
-                <span style="color: transparent; font-size: 200%">X</span>
+                <xsl:attribute name="style">color: transparent; font-size: 200%; text-decoration: none</xsl:attribute>
+                X
             </xsl:if>
             </a>
         </td>
@@ -142,7 +147,6 @@
     </option>
     </xsl:for-each>
   </select>
-  <xsl:variable name="fen"><xsl:value-of select="//response/game/@fen"/></xsl:variable>
   <input type="text" name="fen" value="{$fen}"/>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
