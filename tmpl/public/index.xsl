@@ -85,18 +85,22 @@
     <tr>
     <td colspan="8" align="center">
       <a href="/?pgn={$pgn};move=0" title="Start">
+      <xsl:if test="$pgn"><xsl:attribute name="class">tiny button</xsl:attribute></xsl:if>
       <xsl:if test="$pgn = ''"><xsl:attribute name="class">tiny button disabled</xsl:attribute></xsl:if>
       |&#60;
       </a>
       <a href="/?pgn={$pgn};move={$reverse}" class="tiny button" title="Step back">
+      <xsl:if test="$pgn"><xsl:attribute name="class">tiny button</xsl:attribute></xsl:if>
       <xsl:if test="$pgn = ''"><xsl:attribute name="class">tiny button disabled</xsl:attribute></xsl:if>
       &#60;
       </a>
       <a href="/?pgn={$pgn};move={$forward}" class="tiny button" title="Step forward">
+      <xsl:if test="$pgn"><xsl:attribute name="class">tiny button</xsl:attribute></xsl:if>
       <xsl:if test="$pgn = ''"><xsl:attribute name="class">tiny button disabled</xsl:attribute></xsl:if>
       &#62;
       </a>
       <a href="/?pgn={$pgn};move=-1" class="tiny button" title="End">
+      <xsl:if test="$pgn"><xsl:attribute name="class">tiny button</xsl:attribute></xsl:if>
       <xsl:if test="$pgn = ''"><xsl:attribute name="class">tiny button disabled</xsl:attribute></xsl:if>
       &#62;|
       </a>
