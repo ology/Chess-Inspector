@@ -58,7 +58,8 @@
             <xsl:if test="@threatened > 0 and @protected > 0">
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
-            <a href="/?position={$rowcol};pgn={$pgn};move={$forward - 1}">
+            <xsl:variable name="previous"><xsl:value-of select="@previous"/></xsl:variable>
+            <a href="/?position={$rowcol};previous={$previous};pgn={$pgn};move={$forward - 1}">
             <xsl:choose>
               <xsl:when test="$rowcol = @position">
                 <xsl:attribute name="style">color: red; font-size: 200%; text-decoration: none</xsl:attribute>
