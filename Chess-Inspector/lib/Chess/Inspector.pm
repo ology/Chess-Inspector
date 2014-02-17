@@ -30,6 +30,8 @@ sub coverage
     my $fen  = $self->form('fen')  || Chess::Rep::FEN_STANDARD;
     my $pgn  = $self->form('pgn')  || '';
     my $move = $self->form('move') || 0;
+    my $posn = $self->form('position') || 0;
+    my $prev = $self->form('previous') || $posn;
 
     # Total moves in game.
     my $moves = 0;
@@ -120,7 +122,8 @@ sub coverage
                 data   => {
                     row            => $row,
                     col            => $col,
-                    position       => $self->form('position'),
+                    position       => $posn,
+                    previous       => $prev,
                     piece          => $piece,
                     protected      => $protect,
                     threatened     => $threat,
