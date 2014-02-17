@@ -25,8 +25,8 @@
 <xsl:for-each select="//response/board">
     <tr>
         <xsl:for-each select="cell">
-        <xsl:variable name="rowcol"><xsl:value-of select="@row"/><xsl:value-of select="@col"/></xsl:variable>
-        <td id="{$rowcol}" align="center" height="55" width="55">
+        <xsl:variable name="colrow"><xsl:value-of select="@col"/><xsl:value-of select="@row"/></xsl:variable>
+        <td id="{$colrow}" align="center" height="55" width="55">
             <xsl:if test="//response/game/@to_move > 0">
                 <xsl:if test="@black_can_move > 0">
                     <xsl:attribute name="style">background: tan</xsl:attribute>
@@ -59,9 +59,9 @@
                 <xsl:attribute name="style">background: yellow; border: <xsl:value-of select="@protected"/>px solid green</xsl:attribute>
             </xsl:if>
             <xsl:variable name="previous"><xsl:value-of select="@previous"/></xsl:variable>
-            <a href="/?position={$rowcol};previous={$previous};pgn={$pgn};move={$forward - 1}">
+            <a href="/?position={$colrow};previous={$previous};pgn={$pgn};move={$forward - 1}">
             <xsl:choose>
-              <xsl:when test="$rowcol = @position">
+              <xsl:when test="$colrow = @position">
                 <xsl:attribute name="style">color: red; font-size: 200%; text-decoration: none</xsl:attribute>
                 <xsl:if test="@piece">
                 <xsl:value-of disable-output-escaping="yes" select="@piece"/>
