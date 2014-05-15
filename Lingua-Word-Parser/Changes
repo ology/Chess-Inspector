@@ -1,0 +1,5 @@
+Revision history for Lingua-Word-Parser
+
+{{$NEXT}}
+    - Imported functionality from nomen-re.
+    - Minted by Dist::Zilla
