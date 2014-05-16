@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<ruleset>
+ <conf domain="chess.ology.net" client_package="Chess::Inspector" enable_domain_lib="1" api_package="Chameleon5::API::JSON" api_secret_key="33690174373.6724" template_package="Chameleon5::Template::XSLT" serve_static_xsl="1" />
+ <pages>
+
+  <page name="root" uri="/">
+   <resources>
+    <resource>
+     <sub value="coverage" />
+     <http_method value="GET" />
+     <http_method value="POST" />
+     <class value="public" />
+    </resource>
+   </resources>
+  </page>
+
+ </pages>
+</ruleset>
