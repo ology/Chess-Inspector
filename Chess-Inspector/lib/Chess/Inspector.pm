@@ -96,6 +96,8 @@ sub coverage
                 ? ($c->{$key}{color} ? 'w' : 'b') . lc $c->{$key}{occupant} : '';
             # Convert to a single chess piece character.
             $piece = $chessfont{$piece};
+
+            # Get the cell coverage states
             my $protect = exists $c->{$key}{is_protected_by}
                 ? scalar @{ $c->{$key}{is_protected_by} }     : 0;
             my $threat = exists $c->{$key}{is_threatened_by}
