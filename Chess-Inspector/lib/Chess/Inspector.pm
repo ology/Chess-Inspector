@@ -12,14 +12,18 @@ our $VERSION = '0.01';
 
 =head1 NAME
 
-Chess::Inspector - Inspect a chess game
+Chess::Inspector
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
-    use Chess::Inspector;
-    my $foo = Chess::Inspector->new();
+Visualize a chess game with Chameleon5
 
-=head1 METHODS
+=head1 METHOD
+
+=head2 coverage
+
+Compute the chess board coverage and append the game meta-data, each cell and
+player state to the response.
 
 =cut
 
