@@ -92,6 +92,29 @@ my $cover = $ply->coverage;
 
 =end
 
+=head1 Compute the State
+
+=begin text
+
+for my $row (1 .. 8)
+{
+    my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
+
+    for my $col ('A' .. 'H')
+    {
+      ...
+      # Get the cell coverage states
+      my $protect = exists $c->{$key}{is_protected_by}
+          ? @{ $c->{$key}{is_protected_by} }     : 0;
+      my $threat = exists $c->{$key}{is_threatened_by}
+          ? @{ $c->{$key}{is_threatened_by} }    : 0;
+      my $wmove = exists $c->{$key}{white_can_move_here}
+          ? @{ $c->{$key}{white_can_move_here} } : 0;
+      my $bmove = exists $c->{$key}{black_can_move_here}
+          ? @{ $c->{$key}{black_can_move_here} } : 0;
+
+=end
+
 =head1 Prepare To Engage!
 
 Append the computed cell and player states to the request response.
@@ -124,7 +147,7 @@ My choice of rendering data: XML!
 
 Therefore, I use XSLT (specifically XML::LibXSLT) for the job.
 
-I could very well append JSON and use Javascript to render things.
+I could very well append JSON and use javascript or d3 to render things.
 
 =head1 The Gory Details
 
@@ -152,19 +175,31 @@ I say, one alternative.
 
 =begin html
 
-<img src="../site_root/img/coverage.png" style="float:right; vertical-align:top"/>
+<img src="../site_root/img/White-to-move.png" style="float:right; vertical-align:top"/>
+
+=end html
+
+It's the start of the match and White is to move...
+
+=head1 Move Number Three
+
+=begin html
+
+<img src="../site_root/img/Black-to-move.png" style="float:right; vertical-align:top"/>
 
 =end html
 
 =over
 
-=item Blue - White can move
+It's Black's turn.
 
-=item Tan - Black can move
+=item Tan - Can move
 
-=item Green - Protected
+=item Blue - Cell threatened
 
-=item Yello - Threatened
+=item Green - Piece protected
+
+=item Yello - Piece threatened
 
 =item White - Not threatened
 
