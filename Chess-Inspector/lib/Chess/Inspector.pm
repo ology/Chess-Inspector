@@ -7,6 +7,7 @@ use Chess::Pgn;
 use lib '/Users/gene/sandbox/github/ology/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
 use Chess::Rep;
+use File::Basename;
 
 our $VERSION = '0.01';
 
@@ -152,8 +153,18 @@ sub coverage
         }
     );
 
-    # TODO Grab PGN files from the PGN directory instead!
-    for my $game (qw( Game-of-the-Century Immortal ))
+    # Grab the PGN files
+    my @pgn;
+    my $pgndir = $self->domain_root_path . 'site_root/pgn/';
+    opendir( my $dh, $pgndir ) || die "Can't read $pgndir: $!";
+    while( readdir $dh ) {
+        next if /^\./;
+        my $basename = basename( $_, '.pgn' );
+        push @pgn, $basename;
+    }
+    closedir $dh;
+
+    for my $game ( @pgn )
     {
         $self->fast_append(
             tag  => 'games',
