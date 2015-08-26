@@ -49,11 +49,12 @@
     <% END %>
 
     <tr>
+        <% abled = pgn ? '' : ' disabled' %>
         <td colspan="8" style="text-align: center">
-          <a href="/?pgn=<% pgn %>;move=0" title="Start" class="tiny button">|&#60;</a>
-          <a href="/?pgn=<% pgn %>;move=<% response.game.reverse %>" title="Step back" class="tiny button">&#60;</a>
-          <a href="/?pgn=<% pgn %>;move=<% response.game.forward %>" title="Step forward" class="tiny button">&#62;</a>
-          <a href="/?pgn=<% pgn %>;move=-1" title="End" class="tiny button">&#62;|</a>
+          <a href="/?pgn=<% pgn %>;move=0" title="Start" class="tiny button<% abled %>">|&#60;</a>
+          <a href="/?pgn=<% pgn %>;move=<% response.game.reverse %>" title="Step back" class="tiny button<% abled %>">&#60;</a>
+          <a href="/?pgn=<% pgn %>;move=<% response.game.forward %>" title="Step forward" class="tiny button<% abled %>">&#62;</a>
+          <a href="/?pgn=<% pgn %>;move=-1" title="End" class="tiny button<% abled %>">&#62;|</a>
         </td>
     </tr>
 
