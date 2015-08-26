@@ -117,7 +117,9 @@
         <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
     <% END %>
   </select>
-  <input type="text" name="fen" value="<% response.game.fen %>"/>
+  <br/>
+  <% response.game.fen %>
+  <br/>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
