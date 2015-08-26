@@ -48,6 +48,7 @@
     </tr>
     <% END %>
 
+    <% IF pgn %>
     <tr>
         <% abled = pgn ? '' : ' disabled' %>
         <td colspan="8" style="text-align: center">
@@ -57,6 +58,7 @@
           <a href="/?pgn=<% pgn %>;move=-1" title="End" class="tiny button<% abled %>">&#62;|</a>
         </td>
     </tr>
+    <% END %>
 
 </table>
 
