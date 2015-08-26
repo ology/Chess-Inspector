@@ -4,29 +4,29 @@
 <p/>
 <h3>Chess::Inspector</h3>
 
-<table border="1" style="border-collapse: collapse;">
+<table border="0" style="border-collapse: separate;">
 
     <% FOREACH r IN response.rows.keys.sort %>
     <tr>
         <% FOREACH cell = response.rows.$r  %>
         <% colrow = cell.row _ cell.col %>
         <% IF response.game.to_move > 0 %>
-            <% IF cell.black_can_move > 0 %>
+            <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
+                <% style = 'background: lightblue; border: 4px solid tan;' %>
+            <% ELSIF cell.black_can_move > 0 %>
                 <% style = 'background: tan;' %>
             <% ELSIF cell.white_can_move > 0 %>
                 <% style = 'background: lightblue;' %>
-            <% ELSIF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: lightblue; border: 5px solid tan;' %>
             <% ELSE %>
                 <% style = 'background: white;' %>
             <% END %>
         <% ELSE %>
-            <% IF cell.white_can_move > 0 %>
+            <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
+                <% style = 'background: tan; border: 4px solid lightblue;' %>
+            <% ELSIF cell.white_can_move > 0 %>
                 <% style = 'background: lightblue;' %>
             <% ELSIF cell.black_can_move > 0 %>
                 <% style = 'background: tan;' %>
-            <% ELSIF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: tan; border: 5px solid lightblue;' %>
             <% ELSE %>
                 <% style = 'background: white;' %>
             <% END %>
@@ -48,12 +48,12 @@
     <% END %>
 
     <tr>
-    <td colspan="8" align="center">
-      <a href="/?pgn=<% pgn %>;move=0" title="Start" class="tiny button">|&#60;</a>
-      <a href="/?pgn=<% pgn %>;move=<% response.game.reverse %>" title="Step back" class="tiny button">&#60;</a>
-      <a href="/?pgn=<% pgn %>;move=<% response.game.forward %>" title="Step forward" class="tiny button">&#62;</a>
-      <a href="/?pgn=<% pgn %>;move=-1" title="End" class="tiny button">&#62;|</a>
-    </td>
+        <td colspan="8" align="center">
+          <a href="/?pgn=<% pgn %>;move=0" title="Start" class="tiny button">|&#60;</a>
+          <a href="/?pgn=<% pgn %>;move=<% response.game.reverse %>" title="Step back" class="tiny button">&#60;</a>
+          <a href="/?pgn=<% pgn %>;move=<% response.game.forward %>" title="Step forward" class="tiny button">&#62;</a>
+          <a href="/?pgn=<% pgn %>;move=-1" title="End" class="tiny button">&#62;|</a>
+        </td>
     </tr>
 
 </table>
@@ -73,8 +73,7 @@
     <p>Player: <% response.white.name %></p>
     <p>Moves made: <% response.white.moves_made %></p>
     <p style="background: lightblue; padding: 5px">Can 
-    <% IF response.game.to_move == 128 %>move to: <% END %>
-    <% IF response.game.to_move == 0 %>threaten: <% END %>
+    <% IF response.game.to_move == 128 %>move to: <% ELSE %>threaten: <% END %>
     <% response.white.can_move %>
     cell<% IF response.white.can_move != 1 %>s<% END %></p>
     <p style="background: yellow; padding: 5px">Threaten: <% response.white.threaten %>
@@ -96,8 +95,7 @@
     <p>Player: <% response.black.name %></p>
     <p>Moves made: <% response.black.moves_made %></p>
     <p style="background: tan; padding: 5px">Can 
-    <% IF response.game.to_move == 0 %>move to: <% END %>
-    <% IF response.game.to_move == 128 %>threaten: <% END %>
+    <% IF response.game.to_move == 0 %>move to: <% ELSE %>threaten: <% END %>
     <% response.black.can_move %>
     cell<% IF response.black.can_move != 1 %>s<% END %></p>
     <p style="background: yellow; padding: 5px">Threaten: <% response.black.threaten %>
@@ -112,7 +110,7 @@
   <select name="pgn">
     <option value="">Select a game</option>
     <% FOREACH g = response.games %>
-        <option value="<% g.name %>"<% IF selected == g.name %> selected<% END %>><% g.name %></option>
+        <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
     <% END %>
   </select>
   <input type="text" name="fen" value="<% response.game.fen %>"/>
