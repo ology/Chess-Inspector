@@ -1,7 +1,6 @@
 package Chess::Inspector;
 
 use Dancer ':syntax';
-
 use Chess::Pgn;
 use Chess::Rep;
 use Chess::Rep::Coverage;
@@ -54,9 +53,11 @@ sub coverage {
 
     my ( $white, $black ) = ( '', '' );
 
+    my $last_move;
+
     if ($move) {
         # Set position and number of moves made.
-        ( $fen, $moves, $white, $black ) = _fen_from_pgn( pgn => $pgn, move => $move );
+        ( $fen, $moves, $white, $black, $last_move ) = _fen_from_pgn( pgn => $pgn, move => $move );
     }
 
     my $g = Chess::Rep::Coverage->new;
@@ -149,6 +150,7 @@ sub coverage {
         pgn     => $pgn,
         reverse => $move == -1 ? $moves - 1 : $move - 1,
         forward => $move > $moves + 1 ? 0 : $move + 1,
+        last_move => $last_move,
      };
 
     # TODO Grab PGN files from the PGN directory instead!
@@ -227,6 +229,9 @@ sub _fen_from_pgn {
     # Declare the FEN.
     my $fen = '';
 
+    my $result;
+    my $last_move;
+
     my $i = 0;
     for my $move (@moves) {
         # Are we on the selected move?
@@ -234,21 +239,20 @@ sub _fen_from_pgn {
             # Set the FEN.
             $fen = $g->get_fen;
 
-            # Show our status.
-#            $self->logger->debug("$i. $move: $fen");
+            # Set the last move.
+            $last_move = $result->{san};
 
-            # All done!
             last;
         }
 
         # Make the move.
-        $g->go_move($move);
+        $result = $g->go_move($move);
 
         # Increment our move counter.
         $i++;
     }
 
-    return $fen, $#moves, $p->white, $p->black;
+    return $fen, $#moves, $p->white, $p->black, $last_move;
 }
 
 1;

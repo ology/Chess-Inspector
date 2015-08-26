@@ -118,6 +118,7 @@
     <% END %>
   </select>
   <br/>
+  <b>Last move:</b> <% response.game.last_move %>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
