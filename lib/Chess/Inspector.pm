@@ -6,6 +6,7 @@ use Chess::Pgn;
 use Chess::Rep;
 use lib '/Users/gene/sandbox/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
+use File::Basename;
 
 our $VERSION = '0.1';
 
@@ -90,9 +91,6 @@ sub coverage {
     );
 
     for my $row ( 1 .. 8 ) {
-        # Add the parent row to the response.
-#        my $parent = $self->fast_append( tag => 'board', data => { row => $row } );
-
         for my $col ( 'A' .. 'H' ) {
             # Convenience.
             my $key = $col . $row;
@@ -125,7 +123,7 @@ sub coverage {
             }
 
             # Add the cell state to the response.
-            $results->{ $row . $col } = {
+            $results->{$key} = {
                 row            => $row,
                 col            => $col,
                 position       => $posn,
@@ -155,6 +153,17 @@ sub coverage {
             selected => $game eq $pgn ? $game : 0,
         };
     }
+
+    # Grab the PGN files
+    my @pgn;
+    my $pgndir = 'public/pgn/';
+    opendir( my $dh, $pgndir ) || die "Can't read $pgndir: $!";
+    while( readdir $dh ) {
+        next if /^\./;
+        my $basename = basename( $_, '.pgn' );
+        push @pgn, $basename;
+    }
+    closedir $dh;
 
     # Reset the moves to the penultimate, if given the last as arg.
     $move = $moves if $move == -1;
