@@ -125,7 +125,7 @@
 </div>
 
 <div class="row">
-    <div class="large-12 column">
+    <div class="large-12 column" style="text-align: center">
         <% response.game.fen %>
     </div>
 </div>
