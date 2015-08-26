@@ -36,7 +36,7 @@ get '/' => sub {
 
     my $results = coverage( $fen, $pgn, $move, $posn, $prev );
 
-    template 'index', { ply => $results };
+    template 'index', { response => $results };
 };
 
 sub coverage {
@@ -148,10 +148,11 @@ sub coverage {
 
     # TODO Grab PGN files from the PGN directory instead!
     for my $game (qw( Game-of-the-Century Immortal )) {
-        $results->{games} = {
-            name     => $game,
-            selected => $game eq $pgn ? $game : 0,
-        };
+        push @{ $results->{games} },
+            {
+                name     => $game,
+                selected => $game eq $pgn ? $game : 0,
+            };
     }
 
     # Grab the PGN files
