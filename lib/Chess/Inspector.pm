@@ -153,15 +153,6 @@ sub coverage {
         last_move => $last_move,
      };
 
-    # TODO Grab PGN files from the PGN directory instead!
-    for my $game (qw( Game-of-the-Century Immortal )) {
-        push @{ $results->{games} },
-            {
-                name     => $game,
-                selected => $game eq $pgn ? $game : 0,
-            };
-    }
-
     # Grab the PGN files
     my @pgn;
     my $pgndir = 'public/pgn/';
@@ -170,6 +161,12 @@ sub coverage {
         next if /^\./;
         my $basename = basename( $_, '.pgn' );
         push @pgn, $basename;
+
+        push @{ $results->{games} },
+            {
+                name     => $basename,
+                selected => $basename eq $pgn ? $basename : 0,
+            };
     }
     closedir $dh;
 
