@@ -118,10 +118,14 @@
     <% END %>
   </select>
   <br/>
-  <% response.game.fen %>
-  <br/>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
 </div>
 
+</div>
+
+<div class="row">
+    <div class="large-12 column">
+        <% response.game.fen %>
+    </div>
 </div>
