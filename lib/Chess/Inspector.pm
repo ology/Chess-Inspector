@@ -33,6 +33,8 @@ get '/' => sub {
     my $posn = params->{position} || 0;
     my $prev = params->{previous} || $posn;
 
+    $fen = Chess::Rep::FEN_STANDARD unless $pgn;
+
     my $results = coverage( $fen, $pgn, $move, $posn, $prev );
 
     template 'index', {
