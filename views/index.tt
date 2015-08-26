@@ -49,7 +49,7 @@
     <% END %>
 
     <tr>
-        <td colspan="8" align="center">
+        <td colspan="8" style="text-align: center">
           <a href="/?pgn=<% pgn %>;move=0" title="Start" class="tiny button">|&#60;</a>
           <a href="/?pgn=<% pgn %>;move=<% response.game.reverse %>" title="Step back" class="tiny button">&#60;</a>
           <a href="/?pgn=<% pgn %>;move=<% response.game.forward %>" title="Step forward" class="tiny button">&#62;</a>
