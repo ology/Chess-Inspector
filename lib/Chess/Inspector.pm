@@ -4,7 +4,6 @@ use Dancer ':syntax';
 
 use Chess::Pgn;
 use Chess::Rep;
-use lib '/Users/gene/sandbox/Chess-Rep-Coverage/lib';
 use Chess::Rep::Coverage;
 use File::Basename;
 
@@ -36,7 +35,12 @@ get '/' => sub {
 
     my $results = coverage( $fen, $pgn, $move, $posn, $prev );
 
-    template 'index', { response => $results };
+    template 'index', {
+        response => $results,
+        fen      => $fen,
+        pgn      => $pgn,
+        selected => $pgn,
+    };
 };
 
 sub coverage {
@@ -123,7 +127,7 @@ sub coverage {
             }
 
             # Add the cell state to the response.
-            $results->{$key} = {
+            push @{ $results->{rows}{$row} }, {
                 row            => $row,
                 col            => $col,
                 position       => $posn,
