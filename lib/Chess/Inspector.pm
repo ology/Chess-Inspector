@@ -39,7 +39,6 @@ get '/' => sub {
         response => $results,
         fen      => $fen,
         pgn      => $pgn,
-        selected => $pgn,
     };
 };
 
