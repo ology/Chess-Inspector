@@ -40,7 +40,8 @@
         <% IF cell.protected > 0 && cell.threatened > 0 %>
             <% style = 'background: yellow; border: ' _ cell.protected _ 'px solid green;' %>
         <% END %>
-        <td id="<% colrow %>" align="center" height="55" width="55" style="<% style %>">
+        <% style = style _ ' text-align: center;' %>
+        <td id="<% colrow %>" height="55" width="55" style="<% style %>">
             <% cell.piece %>
         </td>
         <% END %>
