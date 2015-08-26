@@ -1,22 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
-<title>Chess::Inspector</title>
+<title>Word Partition</title>
 <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="<% request.uri_base %>/foundation-5.5.2/css/normalize.css" />
+<link rel="stylesheet" href="<% request.uri_base %>/foundation-5.5.2/css/foundation.css" />
+<script src="<% request.uri_base %>/foundation-5.5.2/js/vendor/modernizr.js"></script>
+
 <!-- Grab jQuery from a CDN, fall back to local if necessary -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
 <script type="text/javascript">/* <![CDATA[ */
     !window.jQuery && document.write('<script type="text/javascript" src="<% request.uri_base %>/javascripts/jquery.min.js"><\/script>')
 /* ]]> */</script>
 
 </head>
 <body>
+<% IF flash.error %>
+    <div class="large-12 columns">
+        <div class="error">
+            <% flash.error %>
+        </div>
+    </div>
+<% END %>
 <% content %>
 <div id="footer">
-Powered by <a href="http://perldancer.org/">Dancer</a> <% dancer_version %>
+    <hr/>
+    Built by <a href="http://gene.ology.net/">Gene Boggs</a>
 </div>
 </body>
 </html>
