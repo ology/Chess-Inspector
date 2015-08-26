@@ -69,7 +69,8 @@
   <h3>
   <% IF response.game.to_move == 0 %>
     White
-  <% ELSE %>
+  <% END %>
+  <% IF response.game.to_move == 128 %>
     White to move
   <% END %>
   </h3>
@@ -91,7 +92,8 @@
   <h3>
   <% IF response.game.to_move == 128 %>
     Black
-  <% ELSE %>
+  <% END %>
+  <% IF response.game.to_move == 0 %>
     Black to move
   <% END %>
   </h3>
