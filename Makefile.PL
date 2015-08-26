@@ -17,6 +17,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More'           => 0,
         'YAML'                 => 0,
+        'Template'             => 0,
         'Dancer'               => 1.3140,
         'Chess::Pgn'           => 0,
         'Chess::Rep'           => 0,
