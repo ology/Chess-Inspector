@@ -2,6 +2,7 @@ package Chess::Inspector;
 
 use Dancer ':syntax';
 use Chess::Pgn;
+use Chess::PGN::Parse;
 use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
@@ -40,6 +41,13 @@ get '/' => sub {
         response => $results,
         fen      => $fen,
         pgn      => $pgn,
+    };
+};
+
+get '/parse' => sub {
+    my $index = parse_pgn('public/pgn/kasparov.pgn');
+    template 'parse', {
+        index => $index,
     };
 };
 
@@ -250,6 +258,48 @@ sub _fen_from_pgn {
     }
 
     return $fen, $#moves, $p->white, $p->black, $last_move;
+}
+
+sub parse_pgn {
+    my $file = shift;
+
+    my $pgn = Chess::PGN::Parse->new($file);
+
+    my $games = $pgn->quick_read_all;
+
+    my %index;
+
+    for my $game ( @$games ) {
+        my $color = $game->{White} =~ /Kasparov/ ? 0 : 1;
+        my $i = 0;
+        for my $move ( @{ $game->{GameMoves} } ) {
+            if ( $color ) {
+                next unless $i++ % 2;
+            }
+            else {
+                next if $i++ % 2;
+            }
+            $move =~ s/^.*?(\w\d).*?$/$1/;
+            $index{$i}->{$move}++;
+        }
+    }
+
+    my %vals;
+
+    for my $i ( sort { $a <=> $b } keys %index ) {
+        for my $col ( 'a' .. 'h' ) {
+            for my $row ( 1 .. 8 ) {
+                my $move = $col . $row;
+                push @{ $vals{$i} }, {
+                    row => $row,
+                    col => $col,
+                    val => exists $index{$i}->{$move} ? $index{$i}->{$move} : 0,
+                };
+            }
+        }
+    }
+
+    return \%vals;
 }
 
 1;
