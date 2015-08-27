@@ -75,14 +75,14 @@ sub coverage {
 
     my $player = {
         white => {
-            name       => $white ? (split / /, $white)[-1] : '',
+            name       => $white ? $white : '',
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
             protect    => 0,
         },
         black => {
-            name       => $black ? (split / /, $black)[-1] : '',
+            name       => $black ? $black : '',
             moves_made => 0,
             can_move   => 0,
             threaten   => 0,
