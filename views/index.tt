@@ -118,11 +118,11 @@
     <% END %>
   </select>
   <br/>
-  <% IF response.game.last_move %>
-      <b>Last move:</b> <% response.game.last_move %>
-      <br/>
-  <% END %>
   <input type="submit" value="Refresh" class="tiny button right"/>
+  <% IF response.game.last_move %>
+      <br/>
+      <b>Last move:</b> <% response.game.last_move %>
+  <% END %>
   </form>
 </div>
 
