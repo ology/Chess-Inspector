@@ -4,13 +4,13 @@
 <p/>
 <h3>Chess::Inspector</h3>
 
-<table border="0" style="border-collapse: separate;">
+<table border="1" style="border-collapse: separate;">
 
-    <% FOREACH r IN index.keys.sort %>
+    <% FOREACH row IN index.keys.sort %>
     <tr>
-        <% FOREACH c = index.$r  %>
+        <% FOREACH cell = index.$row %>
         <td height="55" width="55">
-            <% c.val %>
+            <% cell.val %>
         </td>
         <% END %>
     </tr>

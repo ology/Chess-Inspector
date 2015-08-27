@@ -46,8 +46,9 @@ get '/' => sub {
 
 get '/parse' => sub {
     my $index = parse_pgn('public/pgn/kasparov.pgn');
+#use Data::Dumper::Concise;warn Dumper$index;
     template 'parse', {
-        index => $index,
+        index => $index->{1},
     };
 };
 
@@ -287,13 +288,13 @@ sub parse_pgn {
     my %vals;
 
     for my $i ( sort { $a <=> $b } keys %index ) {
-        for my $col ( 'a' .. 'h' ) {
-            for my $row ( 1 .. 8 ) {
+        for my $row ( 1 .. 8 ) {
+            for my $col ( 'a' .. 'h' ) {
                 my $move = $col . $row;
-                push @{ $vals{$i} }, {
+                push @{ $vals{$i}->{$row} }, {
                     row => $row,
                     col => $col,
-                    val => exists $index{$i}->{$move} ? $index{$i}->{$move} : 0,
+                    exists $index{$i}->{$move} ? ( val => $index{$i}->{$move} ) : (),
                 };
             }
         }
