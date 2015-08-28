@@ -48,15 +48,13 @@ get '/' => sub {
 
 get '/parse' => sub {
     my $index = parse_pgn('public/kasparov.pgn');
-#use Data::Dumper::Concise;warn Dumper$index;
 
     my $forward = params->{forward} || 1;
-
-#    $forward = ( sort { $a <=> $b } keys %$index )[-1] if $forward == -1;
 
     template 'parse', {
         index   => $index->{$forward},
         forward => $forward,
+        total   => scalar( keys %$index ),
     };
 };
 
