@@ -18,8 +18,8 @@
 
      <tr>
         <td colspan="8" style="text-align: center">
-          <a href="/parse" title="Start" class="tiny button">|&#60;</a>
-          <a href="/parse?forward=<% forward + 1 %>" title="Step forward" class="tiny button">&#62;</a>
+          <a href="/history" title="Start" class="tiny button">|&#60;</a>
+          <a href="/history?forward=<% forward + 1 %>" title="Step forward" class="tiny button">&#62;</a>
         </td>
     </tr>
 
