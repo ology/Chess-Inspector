@@ -52,7 +52,7 @@ get '/parse' => sub {
 
     my $forward = params->{forward} || 1;
 
-    $forward = ( sort { $a <=> $b } keys %$index )[-1] if $forward == -1;
+#    $forward = ( sort { $a <=> $b } keys %$index )[-1] if $forward == -1;
 
     template 'parse', {
         index   => $index->{$forward},
