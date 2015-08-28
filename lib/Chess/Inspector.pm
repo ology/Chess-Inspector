@@ -204,14 +204,7 @@ sub coverage {
 
     # Add player status to the response.
     for my $color (qw( white black )) {
-        $results->{$color} = {
-            name       => $player->{$color}{name},
-            moves_made => $player->{$color}{moves_made},
-            can_move   => $player->{$color}{can_move},
-            threaten   => $player->{$color}{threaten},
-            protect    => $player->{$color}{protect},
-            last_move  => $player->{$color}{last_move},
-        };
+        $results->{$color} = $player->{$color};
     }
 
     return $results;
