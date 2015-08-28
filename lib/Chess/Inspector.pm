@@ -51,7 +51,7 @@ get '/history' => sub {
 
     my $forward = params->{forward} || 1;
 
-    template 'parse', {
+    template 'history', {
         index   => $index->{$forward},
         forward => $forward,
         total   => scalar( keys %$index ),
