@@ -42,7 +42,7 @@
         <% END %>
         <% style = style _ ' text-align: center;' %>
         <td id="<% colrow %>" height="55" width="55" style="<% style %>">
-            <% cell.piece %>
+            <a title="<% colrow %>" style="color:#000000"><% cell.piece %></a>
         </td>
         <% END %>
     </tr>
