@@ -9,7 +9,7 @@
     <% FOREACH r IN response.rows.keys.sort %>
     <tr>
         <% FOREACH cell = response.rows.$r  %>
-        <% colrow = cell.row _ cell.col %>
+        <% colrow = cell.col _ cell.row %>
         <% IF response.game.to_move > 0 %>
             <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
                 <% style = 'background: lightblue; border: 4px solid tan;' %>
