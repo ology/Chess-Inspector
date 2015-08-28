@@ -32,10 +32,11 @@ get '/' => sub {
     my $move = params->{move}     || 0;
     my $posn = params->{position} || 0;
     my $prev = params->{previous} || $posn;
+    my $last = params->{last}     || '';
 
     $fen = Chess::Rep::FEN_STANDARD unless $pgn;
 
-    my $results = coverage( $fen, $pgn, $move, $posn, $prev );
+    my $results = coverage( $fen, $pgn, $move, $posn, $prev, $last );
 
     template 'index', {
         response => $results,
@@ -53,7 +54,7 @@ get '/parse' => sub {
 };
 
 sub coverage {
-    my ( $fen, $pgn, $move, $posn, $prev ) = @_;
+    my ( $fen, $pgn, $move, $posn, $prev, $last ) = @_;
 
     my $results = {};
 
@@ -188,13 +189,17 @@ sub coverage {
     {
         $player->{black}{moves_made} = ( $move - 1 ) / 2;
         $player->{white}{moves_made} = $player->{black}{moves_made} + 1;
-        $player->{white}{last_move}  = $last_move;
+
+        $player->{white}{last_move} = $last_move;
+        $player->{black}{last_move} = $last;
     }
     else
     {
         $player->{white}{moves_made} = $move / 2;
         $player->{black}{moves_made} = $player->{white}{moves_made};
-        $player->{black}{last_move}  = $last_move;
+
+        $player->{black}{last_move} = $last_move;
+        $player->{white}{last_move} = $last;
     }
 
     # Add player status to the response.
