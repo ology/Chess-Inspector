@@ -190,16 +190,16 @@ sub coverage {
         $player->{black}{moves_made} = ( $move - 1 ) / 2;
         $player->{white}{moves_made} = $player->{black}{moves_made} + 1;
 
-        $player->{white}{last_move} = $last_move;
-        $player->{black}{last_move} = $last;
+        $player->{white}{last_move} = $move ? $last_move : '';
+        $player->{black}{last_move} = $move ? $last : '';
     }
     else
     {
         $player->{white}{moves_made} = $move / 2;
         $player->{black}{moves_made} = $player->{white}{moves_made};
 
-        $player->{black}{last_move} = $last_move;
-        $player->{white}{last_move} = $last;
+        $player->{black}{last_move} = $move ? $last_move : '';
+        $player->{white}{last_move} = $move ? $last : '';
     }
 
     # Add player status to the response.
