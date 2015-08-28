@@ -28,7 +28,14 @@
 </div>
 
 <div class="large-3 column">
+  <p/>
+  <h3>Player</h3>
+  <div class="panel">
+    <p>Kasparov, Gary</p>
+    <p>Moves made: <% forward %></p>
+  </div>
 </div>
+
 <div class="large-6 column">
 </div>
 
