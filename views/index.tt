@@ -78,7 +78,7 @@
   <% END %>
   </h3>
   <div class="panel">
-    <p><% response.white.name %></p>
+    <p><% response.white.name || '&nbsp;' %></p>
     <p>Moves made: <% response.white.moves_made %></p>
     <p>Last move: <% response.white.last_move %>
     <p style="background: lightblue; padding: 5px">Can 
@@ -101,7 +101,7 @@
   <% END %>
   </h3>
   <div class="panel">
-    <p><% response.black.name %></p>
+    <p><% response.black.name || '&nbsp;' %></p>
     <p>Moves made: <% response.black.moves_made %></p>
     <p>Last move: <% response.black.last_move %>
     <p style="background: tan; padding: 5px">Can 
