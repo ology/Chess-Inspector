@@ -6,6 +6,7 @@ use Chess::PGN::Parse;
 use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
+use POSIX;
 
 our $VERSION = '0.1';
 
@@ -162,7 +163,7 @@ sub coverage {
         pgn     => $pgn,
         reverse => $move == -1 ? $moves - 1 : $move - 1,
         forward => $move > $moves + 1 ? 0 : $move + 1,
-        total   => $moves,
+        total   => ceil( $moves / 2 ),
      };
 
     # Grab the PGN files
