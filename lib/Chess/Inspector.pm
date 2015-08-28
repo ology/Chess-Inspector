@@ -46,7 +46,7 @@ get '/' => sub {
     };
 };
 
-get '/parse' => sub {
+get '/history' => sub {
     my $index = parse_pgn('public/kasparov.pgn');
 
     my $forward = params->{forward} || 1;
