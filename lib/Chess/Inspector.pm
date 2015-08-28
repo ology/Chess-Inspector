@@ -65,8 +65,10 @@ sub coverage {
 
     my $last_move;
 
-    # Set position and number of moves made.
-    ( $fen, $moves, $white, $black, $last_move ) = _fen_from_pgn( pgn => $pgn, move => $move );
+    if ( $pgn ) {
+        # Set position and number of moves made.
+        ( $fen, $moves, $white, $black, $last_move ) = _fen_from_pgn( pgn => $pgn, move => $move );
+    }
 
     my $g = Chess::Rep::Coverage->new;
     $g->set_from_fen($fen);
