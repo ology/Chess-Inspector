@@ -61,7 +61,7 @@
                 <% IF response.game.reverse > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.reverse %>"<% END %>
                 title="Step back" class="tiny button">&#60;</a>
               <a
-                <% IF response.game.forward < response.game.total %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.forward %>"<% END %>
+                <% IF response.game.forward < response.game.total && response.game.forward > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.forward %>"<% END %>
                 title="Step forward" class="tiny button">&#62;</a>
               <a href="/?pgn=<% pgn %>&last=<% last_move %>&move=-1" title="End" class="tiny button">&#62;|</a>
             </td>
