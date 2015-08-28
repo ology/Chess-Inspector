@@ -74,7 +74,7 @@
   <% END %>
   </h3>
   <div class="panel">
-    <p>Player: <% response.white.name %></p>
+    <p><% response.white.name %></p>
     <p>Moves made: <% response.white.moves_made %></p>
     <p style="background: lightblue; padding: 5px">Can 
     <% IF response.game.to_move == 128 %>move to: <% ELSE %>threaten: <% END %>
@@ -96,7 +96,7 @@
   <% END %>
   </h3>
   <div class="panel">
-    <p>Player: <% response.black.name %></p>
+    <p><% response.black.name %></p>
     <p>Moves made: <% response.black.moves_made %></p>
     <p style="background: tan; padding: 5px">Can 
     <% IF response.game.to_move == 0 %>move to: <% ELSE %>threaten: <% END %>
