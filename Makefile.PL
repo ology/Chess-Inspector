@@ -12,7 +12,7 @@ WriteMakefile(
     AUTHOR       => 'Gene Boggs <gene@cpan.org>',
     VERSION_FROM => 'lib/Chess/Inspector.pm',
     ABSTRACT     => 'Visualize move, protection and threat status',
-    ($eumm_version >= 6.3001 ? ('LICENSE'=> 'perl') : ()),
+    ( $eumm_version >= 6.3001 ? ( LICENSE => 'perl' ) : () ),
     PL_FILES  => {},
     PREREQ_PM => {
         'Test::More'           => 0,
