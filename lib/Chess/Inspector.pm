@@ -47,7 +47,7 @@ get '/' => sub {
 };
 
 get '/parse' => sub {
-    my $index = parse_pgn('public/pgn/kasparov.pgn');
+    my $index = parse_pgn('public/kasparov.pgn');
 #use Data::Dumper::Concise;warn Dumper$index;
     template 'parse', {
         index => $index->{1},
