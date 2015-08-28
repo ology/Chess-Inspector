@@ -76,6 +76,7 @@
   <div class="panel">
     <p><% response.white.name %></p>
     <p>Moves made: <% response.white.moves_made %></p>
+    <p>Last move: <% response.white.last_move %>
     <p style="background: lightblue; padding: 5px">Can 
     <% IF response.game.to_move == 128 %>move to: <% ELSE %>threaten: <% END %>
     <% response.white.can_move %>
@@ -98,6 +99,7 @@
   <div class="panel">
     <p><% response.black.name %></p>
     <p>Moves made: <% response.black.moves_made %></p>
+    <p>Last move: <% response.black.last_move %>
     <p style="background: tan; padding: 5px">Can 
     <% IF response.game.to_move == 0 %>move to: <% ELSE %>threaten: <% END %>
     <% response.black.can_move %>
@@ -119,10 +121,6 @@
   </select>
   <br/>
   <input type="submit" value="Refresh" class="tiny button right"/>
-  <% IF response.game.last_move %>
-      <br/>
-      <b>Last move:</b> <% response.game.last_move %>
-  <% END %>
   </form>
 </div>
 

@@ -80,6 +80,7 @@ sub coverage {
             can_move   => 0,
             threaten   => 0,
             protect    => 0,
+            last_move  => '',
         },
         black => {
             name       => $black ? $black : '',
@@ -87,6 +88,7 @@ sub coverage {
             can_move   => 0,
             threaten   => 0,
             protect    => 0,
+            last_move  => '',
         }
     };
 
@@ -159,7 +161,6 @@ sub coverage {
         pgn     => $pgn,
         reverse => $move == -1 ? $moves - 1 : $move - 1,
         forward => $move > $moves + 1 ? 0 : $move + 1,
-        last_move => $last_move,
      };
 
     # Grab the PGN files
@@ -187,11 +188,13 @@ sub coverage {
     {
         $player->{black}{moves_made} = ( $move - 1 ) / 2;
         $player->{white}{moves_made} = $player->{black}{moves_made} + 1;
+        $player->{white}{last_move}  = $last_move;
     }
     else
     {
         $player->{white}{moves_made} = $move / 2;
         $player->{black}{moves_made} = $player->{white}{moves_made};
+        $player->{black}{last_move}  = $last_move;
     }
 
     # Add player status to the response.
@@ -202,6 +205,7 @@ sub coverage {
             can_move   => $player->{$color}{can_move},
             threaten   => $player->{$color}{threaten},
             protect    => $player->{$color}{protect},
+            last_move  => $player->{$color}{last_move},
         };
     }
 
