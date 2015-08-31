@@ -155,6 +155,9 @@ sub coverage {
                 threatened     => $threat,
                 white_can_move => $wmove,
                 black_can_move => $bmove,
+                exists $c->{$key}{occupant} ? ( occupant => $c->{$key}{occupant} ) : (),
+                exists $c->{$key}{protects} ? ( protects => scalar @{ $c->{$key}{protects} } ) : (),
+                exists $c->{$key}{threatens} ? ( threatens => scalar @{ $c->{$key}{threatens} } ) : (),
             };
         }
     }
