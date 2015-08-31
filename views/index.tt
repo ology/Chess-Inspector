@@ -42,9 +42,9 @@
         <% END %>
         <% style = style _ ' text-align: center; font-size: larger;' %>
         <td id="<% colrow %>" height="55" width="55" style="<% style %>">
-            <a title="<% cell.occupant %> <% colrow %>
-Threatens: <% cell.threatens %>
+            <a title="<% cell.occupant %> - <% colrow %>
 Protects: <% cell.protects %>
+Threatens: <% cell.threatens %>
 Protected by: <% cell.is_protected_by %>
 Threatened by: <% cell.is_threatened_by %>
 "
