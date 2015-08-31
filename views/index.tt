@@ -8,7 +8,8 @@
 
     <% FOREACH r IN response.rows.keys.nsort.reverse %>
     <tr>
-        <% FOREACH cell = response.rows.$r  %>
+        <td style="text-align: center; border: none;"><% r %></td>
+        <% FOREACH cell = response.rows.$r %>
         <% colrow = cell.col _ cell.row %>
         <% IF response.game.to_move > 0 %>
             <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
@@ -53,6 +54,18 @@ Threatened by: <% cell.is_threatened_by %>
         <% END %>
     </tr>
     <% END %>
+    <% style = 'text-align: center; border: none;' %>
+    <tr>
+        <td style="<% style %>"></td>
+        <td style="<% style %>">A</td>
+        <td style="<% style %>">B</td>
+        <td style="<% style %>">C</td>
+        <td style="<% style %>">D</td>
+        <td style="<% style %>">E</td>
+        <td style="<% style %>">F</td>
+        <td style="<% style %>">G</td>
+        <td style="<% style %>">H</td>
+    </tr>
 
     <% IF pgn %>
         <% IF response.game.to_move == 0 %>
@@ -61,7 +74,7 @@ Threatened by: <% cell.is_threatened_by %>
             <% last_move = response.black.last_move %>
         <% END %>
         <tr>
-            <td colspan="8" style="text-align: center">
+            <td colspan="9" style="text-align: center">
               <a href="/?pgn=<% pgn %>&last=<% last_move %>&move=0" title="Start" class="tiny button">|&#60;</a>
               <a
                 <% IF response.game.reverse > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.reverse %>"<% END %>
