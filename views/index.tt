@@ -42,7 +42,13 @@
         <% END %>
         <% style = style _ ' text-align: center; font-size: larger;' %>
         <td id="<% colrow %>" height="55" width="55" style="<% style %>">
-            <a title="<% colrow %>" style="color:#000000"><% cell.piece %></a>
+            <a title="<% cell.occupant %> <% colrow %>
+Threatens: <% cell.threatens %>
+Protects: <% cell.protects %>
+Protected by: <% cell.protected %>
+Threatened by: <% cell.threatened %>
+"
+            style="color:#000000"><% cell.piece %></a>
         </td>
         <% END %>
     </tr>
