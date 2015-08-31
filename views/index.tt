@@ -6,7 +6,7 @@
 
 <table border="0" style="border-collapse: separate;">
 
-    <% FOREACH r IN response.rows.keys.sort %>
+    <% FOREACH r IN response.rows.keys.nsort.reverse %>
     <tr>
         <% FOREACH cell = response.rows.$r  %>
         <% colrow = cell.col _ cell.row %>
