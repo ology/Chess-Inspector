@@ -34,7 +34,7 @@
         <% FOREACH row IN index.keys.sort %>
         <tr>
             <% FOREACH cell = index.$row %>
-            <td height="55" width="55">
+            <td height="55" width="55" style="text-align: center">
                 <% cell.val %>
             </td>
             <% END %>
