@@ -144,6 +144,11 @@ sub coverage {
                     if exists $c->{$key}{protects} && $c->{$key}{color} == $color->[1];
             }
 
+            my $protects = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{protects} } );
+            my $is_protected_by = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{is_protected_by} } );
+            my $threatens = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{threatens} } );
+            my $is_threatened_by = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{is_threatened_by} } );
+
             # Add the cell state to the response.
             push @{ $results->{rows}{$row} }, {
                 row            => $row,
@@ -156,8 +161,10 @@ sub coverage {
                 white_can_move => $wmove,
                 black_can_move => $bmove,
                 exists $c->{$key}{occupant} ? ( occupant => $c->{$key}{occupant} ) : (),
-                exists $c->{$key}{protects} ? ( protects => scalar @{ $c->{$key}{protects} } ) : (),
-                exists $c->{$key}{threatens} ? ( threatens => scalar @{ $c->{$key}{threatens} } ) : (),
+                exists $c->{$key}{protects} ? ( protects => $protects ) : (),
+                exists $c->{$key}{threatens} ? ( threatens => $threatens ) : (),
+                exists $c->{$key}{is_protected_by} ? ( is_protected_by => $is_protected_by ) : (),
+                exists $c->{$key}{is_threatened_by} ? ( is_threatened_by => $is_threatened_by ) : (),
             };
         }
     }
