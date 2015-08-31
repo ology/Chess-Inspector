@@ -74,7 +74,7 @@ Threatened by: <% cell.is_threatened_by %>
             <% last_move = response.black.last_move %>
         <% END %>
         <tr>
-            <td colspan="9" style="text-align: center">
+            <td colspan="9" style="text-align: center; border: none;">
               <a href="/?pgn=<% pgn %>&last=<% last_move %>&move=0" title="Start" class="tiny button">|&#60;</a>
               <a
                 <% IF response.game.reverse > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.reverse %>"<% END %>
