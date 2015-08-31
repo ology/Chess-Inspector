@@ -19,6 +19,7 @@
      <tr>
         <td colspan="8" style="text-align: center">
           <a href="/history" title="Start" class="tiny button">|&#60;</a>
+          <a href="/history?move=<% move - 1 %>" title="Step back" class="tiny button">&#60;</a>
           <a href="/history?move=<% move + 1 %>" title="Step forward" class="tiny button">&#62;</a>
         </td>
     </tr>
