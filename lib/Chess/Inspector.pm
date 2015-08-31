@@ -227,7 +227,7 @@ sub coverage {
 
 sub _get_field_id_list {
     my $list = shift;
-    return join( ', ', map { Chess::Rep::get_field_id($_) } @$list );
+    return join( ', ', sort map { Chess::Rep::get_field_id($_) } @$list );
 }
 
 sub _fen_from_pgn {
