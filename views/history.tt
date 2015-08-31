@@ -34,7 +34,7 @@
   <h3>Black player</h3>
   <div class="panel">
     <p>Kasparov, Gary</p>
-    <p>Moves made: <% forward %> / <% total %></p>
+    <p>Moves made: <% move %> / <% total %></p>
   </div>
 </div>
 
