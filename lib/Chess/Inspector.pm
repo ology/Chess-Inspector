@@ -144,10 +144,10 @@ sub coverage {
                     if exists $c->{$key}{protects} && $c->{$key}{color} == $color->[1];
             }
 
-            my $protects = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{protects} } );
-            my $is_protected_by = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{is_protected_by} } );
-            my $threatens = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{threatens} } );
-            my $is_threatened_by = join( ', ', map { Chess::Rep::get_field_id($_) } @{ $c->{$key}{is_threatened_by} } );
+            my $protects         = _get_field_id_list( $c->{$key}{protects} );
+            my $is_protected_by  = _get_field_id_list( $c->{$key}{is_protected_by} );
+            my $threatens        = _get_field_id_list( $c->{$key}{threatens} );
+            my $is_threatened_by = _get_field_id_list( $c->{$key}{is_threatened_by} );
 
             # Add the cell state to the response.
             push @{ $results->{rows}{$row} }, {
@@ -223,6 +223,11 @@ sub coverage {
     }
 
     return $results;
+}
+
+sub _get_field_id_list {
+    my $list = shift;
+    return join( ', ', map { Chess::Rep::get_field_id($_) } @$list );
 }
 
 sub _fen_from_pgn {
