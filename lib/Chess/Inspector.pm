@@ -6,6 +6,7 @@ use Chess::PGN::Parse;
 use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
+use List::Tuples qw( :all );
 use POSIX;
 
 our $VERSION = '0.1';
@@ -280,16 +281,12 @@ sub parse_pgn {
 
     for my $game ( @$games ) {
         my $color = $game->{White} =~ /Kasparov/ ? 0 : 1;
+        next if $color;
         my $i = 0;
-        for my $move ( @{ $game->{GameMoves} } ) {
-            if ( $color ) {
-                next unless $i++ % 2;
-            }
-            else {
-                next if $i++ % 2;
-            }
-            $move =~ s/^.*?(\w\d).*?$/$1/;
-            $index{$i}->{$move}++;
+        for my $tuple ( tuples[2] => @{ $game->{GameMoves} } ) {
+            $i++;
+            my $move = $tuple->[$color];
+            $index{ $i }->{$move}++ if $move;
         }
     }
 
