@@ -24,7 +24,7 @@ WriteMakefile(
         'Chess::Rep'           => 0,
         'Chess::Rep::Coverage' => 0,
         'File::Basename'       => 0,
-        'List::Tuple'          => 0,
+        'List::Tuples'         => 0,
         'POSIX'                => 0,
         'Data::TreeDumper'     => 0,
     },
