@@ -49,13 +49,11 @@ get '/' => sub {
 
 get '/history' => sub {
     my $index = parse_pgn('public/kasparov.pgn');
-
-    my $forward = params->{forward} || 1;
-
+    my $move = params->{move} || 1;
     template 'history', {
-        index   => $index->{$forward},
-        forward => $forward,
-        total   => scalar( keys %$index ),
+        index => $index->{$move},
+        move  => $move,
+        total => scalar( keys %$index ),
     };
 };
 
