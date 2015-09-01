@@ -47,8 +47,7 @@
 Protects: <% cell.protects %>
 Threatens: <% cell.threatens %>
 Protected by: <% cell.is_protected_by %>
-Threatened by: <% cell.is_threatened_by %>
-"
+Threatened by: <% cell.is_threatened_by %>"
             style="color:#000000"><% cell.piece %></a>
         </td>
         <% END %>
