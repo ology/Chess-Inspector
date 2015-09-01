@@ -143,7 +143,7 @@ Threatened by: <% cell.is_threatened_by %>
   <select name="pgn">
     <option value="">Select a game</option>
         <optgroup label="Kasparov, Gary">
-        <% FOREACH g = response.games.sort %>
+        <% FOREACH g = response.games.sort('name') %>
             <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
         <% END %>
         </optgroup>
