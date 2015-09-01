@@ -13,7 +13,7 @@
         <% colrow = cell.col _ cell.row %>
         <% IF response.game.to_move > 0 %>
             <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: lightblue; border: 4px solid tan;' %>
+                <% style = 'background: repeating-linear-gradient(45deg, lightblue, lightblue 10px, tan 10px, tan 20px);' %>
             <% ELSIF cell.black_can_move > 0 %>
                 <% style = 'background: tan;' %>
             <% ELSIF cell.white_can_move > 0 %>
@@ -23,7 +23,7 @@
             <% END %>
         <% ELSE %>
             <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: tan; border: 4px solid lightblue;' %>
+                <% style = 'background: repeating-linear-gradient(45deg, lightblue, lightblue 10px, tan 10px, tan 20px);' %>
             <% ELSIF cell.white_can_move > 0 %>
                 <% style = 'background: lightblue;' %>
             <% ELSIF cell.black_can_move > 0 %>
