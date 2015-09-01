@@ -11,26 +11,14 @@
         <td style="text-align: center; border: none;"><% r %></td>
         <% FOREACH cell = response.rows.$r %>
         <% colrow = cell.col _ cell.row %>
-        <% IF response.game.to_move > 0 %>
-            <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: repeating-linear-gradient(45deg, lightblue, lightblue 10px, tan 10px, tan 20px);' %>
-            <% ELSIF cell.black_can_move > 0 %>
-                <% style = 'background: tan;' %>
-            <% ELSIF cell.white_can_move > 0 %>
-                <% style = 'background: lightblue;' %>
-            <% ELSE %>
-                <% style = 'background: white;' %>
-            <% END %>
+        <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
+            <% style = 'background: repeating-linear-gradient(45deg, lightblue, lightblue 10px, tan 10px, tan 20px);' %>
+        <% ELSIF cell.black_can_move > 0 %>
+            <% style = 'background: tan;' %>
+        <% ELSIF cell.white_can_move > 0 %>
+            <% style = 'background: lightblue;' %>
         <% ELSE %>
-            <% IF cell.black_can_move > 0 && cell.white_can_move > 0 %>
-                <% style = 'background: repeating-linear-gradient(45deg, lightblue, lightblue 10px, tan 10px, tan 20px);' %>
-            <% ELSIF cell.white_can_move > 0 %>
-                <% style = 'background: lightblue;' %>
-            <% ELSIF cell.black_can_move > 0 %>
-                <% style = 'background: tan;' %>
-            <% ELSE %>
-                <% style = 'background: white;' %>
-            <% END %>
+            <% style = 'background: white;' %>
         <% END %>
         <% IF cell.threatened > 0 %>
             <% style = 'background: yellow;' %>
