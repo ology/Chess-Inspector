@@ -19,6 +19,7 @@ WriteMakefile(
         'YAML'                 => 0,
         'Template'             => 0,
         'Dancer'               => 1.3140,
+        'Dancer::Plugin::DirectoryView' => 0,
         'Chess::Pgn'           => 0,
         'Chess::PGN::Parse'    => 0,
         'Chess::Rep'           => 0,
