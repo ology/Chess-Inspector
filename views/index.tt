@@ -79,7 +79,7 @@ Threatened by: <% cell.is_threatened_by %>"
                 <% IF response.game.reverse > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.reverse %>"<% END %>
                 title="Step back" class="tiny button">&#60;</a>
               <a
-                <% IF response.white.moves_made <= response.game.total && response.game.forward > 0 %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.forward %>"<% END %>
+                <% IF response.game.forward > 0 && response.game.forward <= response.game.total %>href="/?pgn=<% pgn %>&last=<% last_move %>&move=<% response.game.forward %>"<% END %>
                 title="Step forward" class="tiny button">&#62;</a>
               <a href="/?pgn=<% pgn %>&last=<% last_move %>&move=-1" title="End" class="tiny button">&#62;|</a>
             </td>
@@ -101,7 +101,7 @@ Threatened by: <% cell.is_threatened_by %>"
   </h3>
   <div class="panel">
     <p><% response.white.name || '&nbsp;' %></p>
-    <p>Moves made: <% response.white.moves_made %> / <% response.game.total %></p>
+    <p>Moves made: <% response.white.moves_made %> / <% response.game.half %></p>
     <p>Last move: <% response.white.last_move %>
     <p style="background: lightblue; padding: 5px">Can 
     <% IF response.game.to_move == 128 %>move to: <% ELSE %>threaten: <% END %>
@@ -124,7 +124,7 @@ Threatened by: <% cell.is_threatened_by %>"
   </h3>
   <div class="panel">
     <p><% response.black.name || '&nbsp;' %></p>
-    <p>Moves made: <% response.black.moves_made %> / <% response.game.total %></p>
+    <p>Moves made: <% response.black.moves_made %> / <% response.game.half %></p>
     <p>Last move: <% response.black.last_move %>
     <p style="background: tan; padding: 5px">Can 
     <% IF response.game.to_move == 0 %>move to: <% ELSE %>threaten: <% END %>

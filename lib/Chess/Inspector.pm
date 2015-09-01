@@ -176,7 +176,8 @@ sub coverage {
         pgn     => $pgn,
         reverse => $move == -1 ? $moves - 1 : $move - 1,
         forward => $move > $moves + 1 ? 0 : $move + 1,
-        total   => ceil( $moves / 2 ),
+        half    => ceil( $moves / 2 ),
+        total   => $moves,
      };
 
     # Grab the PGN files
