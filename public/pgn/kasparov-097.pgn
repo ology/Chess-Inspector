@@ -1,0 +1,16 @@
+[Event "Kasparov simul ACE"]
+[Site "Deurne BEL"]
+[Date "2000.08.21"]
+[Round "?"]
+[White "Kasparov, Gary"]
+[Black "ATV"]
+[Result "1-0"]
+[WhiteElo "2849"]
+[ECO "D35b"]
+[EventDate "2000.08.21"]
+
+1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.cxd5 Nxd5 5.e4 Ne7 6.Nf3 Ng6 7.h4 Bb4 8.h5 Ne7
+9.h6 g6 10.a3 Bxc3+ 11.bxc3 Nd7 12.a4 a5 13.Ba3 b6 14.Bb5 Ba6 15.c4 Bxb5 
+16.cxb5 Nf6 17.Qc2 Rc8 18.d5 O-O 19.dxe6 fxe6 20.Rd1 Qe8 21.Ng5 c6 22.Qb2 
+c5 23.O-O Rb8 24.Nxe6 Rf7 25.Ng5 Ng4 26.Qb3 Nxh6 27.Bb2 Qf8 28.Ne6 c4 29.
+Qc3 Rf6 30.Nxf8 1-0
