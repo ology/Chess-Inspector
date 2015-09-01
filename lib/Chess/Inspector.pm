@@ -241,7 +241,7 @@ sub _fen_from_pgn {
     $p->ReadGame;
     my $game = $p->game;
     $game =~ s/\n/ /g; # De-wrap.
-    my @pairs = split /\s*\d+\.\s+/, $game; 
+    my @pairs = split /\s*\d+\.\s*/, $game; 
     my @moves = ();
     for my $pair (@pairs) {
         next if $pair =~ /^\s*$/;
