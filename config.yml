@@ -29,3 +29,6 @@ template: "template_toolkit"
 # For session support enable the following line and see Dancer::Session
 session: "YAML"
 
+plugins:
+    DirectoryView:
+        url: /pgn

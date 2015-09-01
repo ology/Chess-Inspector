@@ -1,6 +1,7 @@
 package Chess::Inspector;
 
 use Dancer ':syntax';
+use Dancer::Plugin::DirectoryView;
 use Chess::Pgn;
 use Chess::PGN::Parse;
 use Chess::Rep;
