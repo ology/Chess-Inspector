@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use File::Basename;
+
+my $file = shift || die "Usage: perl $0 some.pgn\n";
+
+my $name = fileparse($file);
+$name =~ s/\A([\w-]+)\.pgn\z/$1/;
+
+open my $in, '<', $file or die "Can't read $file: $!";
+
+my $i = 0;
+
+my $new_file = sprintf( '%s-%03d.pgn', $name, $i );
+open my $out, '>', $new_file or die "Can't write to $new_file: $!";
+my $new_game = 0;
+
+while ( my $line = <$in> ) {
+    $new_game++ if $line =~ /\A\s*\z/;
+    if ( $new_game == 2 ) {
+        close $out;
+
+        $i++;
+
+        $new_file = sprintf( '%s-%03d.pgn', $name, $i );
+        open $out, '>', $new_file or die "Can't write to $new_file: $!";
+        $new_game = 0;
+    }
+    else {
+        print $out $line;
+    }
+}
