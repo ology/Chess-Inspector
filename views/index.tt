@@ -142,9 +142,11 @@ Threatened by: <% cell.is_threatened_by %>
   <form>
   <select name="pgn">
     <option value="">Select a game</option>
-    <% FOREACH g = response.games %>
-        <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
-    <% END %>
+        <optgroup label="Kasparov, Gary">
+        <% FOREACH g = response.games.sort %>
+            <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
+        <% END %>
+        </optgroup>
   </select>
   <br/>
   <input type="submit" value="Refresh" class="tiny button right"/>
