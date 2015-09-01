@@ -150,7 +150,7 @@ Threatened by: <% cell.is_threatened_by %>"
   <br/>
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
-  <% IF response.game.forward == 0 || response.game.forward > response.game.total %>
+  <% IF pgn && ( response.game.forward == 0 || response.game.forward > response.game.total ) %>
   <br/>
   <b>Result:</b> <% response.game.result %>
   <% END %>
