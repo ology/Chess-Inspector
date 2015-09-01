@@ -68,10 +68,11 @@ sub coverage {
     my ( $white, $black ) = ( '', '' );
 
     my $last_move;
+    my $game_result;
 
     if ( $pgn ) {
         # Set position and number of moves made.
-        ( $fen, $moves, $white, $black, $last_move ) = _fen_from_pgn( pgn => $pgn, move => $move );
+        ( $fen, $moves, $white, $black, $last_move, $game_result ) = _fen_from_pgn( pgn => $pgn, move => $move );
     }
 
     my $g = Chess::Rep::Coverage->new;
@@ -178,6 +179,7 @@ sub coverage {
         forward => $move > $moves + 1 ? 0 : $move + 1,
         half    => ceil( $moves / 2 ),
         total   => $moves,
+        result  => $game_result,
      };
 
     # Grab the PGN files
@@ -240,6 +242,7 @@ sub _fen_from_pgn {
     # Consume the game moves (only).
     my $p = Chess::Pgn->new($args{pgn});
     $p->ReadGame;
+    my $game_result = $p->result;
     my $game = $p->game;
     $game =~ s/\n/ /g; # De-wrap.
     my @pairs = split /\s*\d+\.\s*/, $game; 
@@ -281,7 +284,7 @@ sub _fen_from_pgn {
         $i++;
     }
 
-    return $fen, $#moves, $p->white, $p->black, $last_move;
+    return $fen, $#moves, $p->white, $p->black, $last_move, $game_result;
 }
 
 sub parse_pgn {
