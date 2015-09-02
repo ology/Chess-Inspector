@@ -135,8 +135,20 @@ Threatened by: <% cell.is_threatened_by %>"
   <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
   <% IF pgn && ( response.game.forward == 0 || response.game.forward > response.game.total ) %>
-  <br/>
-  <b>Result:</b> <% response.game.result %>
+    <br/>
+    <b>Result:</b> <% response.game.result %>
+  <% END %>
+  <% IF response.game.meta.site %>
+    <br/>
+    <b>Site:</b> <% response.game.meta.site %>
+  <% END %>
+  <% IF response.game.meta.date %>
+    <br/>
+    <b>Date:</b> <% response.game.meta.date %>
+  <% END %>
+  <% IF response.game.meta.round %>
+    <br/>
+    <b>Round:</b> <% response.game.meta.round %>
   <% END %>
 </div>
 
