@@ -249,6 +249,8 @@ sub _fen_from_pgn {
         site   => $p->site,
         date   => $p->date,
         round  => $p->round,
+        event  => $p->{Event},
+        eco    => $p->eco,
     };
 
     my $game = $p->game;
