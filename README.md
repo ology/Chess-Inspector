@@ -12,7 +12,7 @@ Visualize move, protection and threat status
 
 ![Hover-Info](https://raw.githubusercontent.com/ology/Chess-Inspector/master/public/images/hover-info.png)
 
-*Installation:*
+* Terminal installation:*
 
 > git clone https://github.com/ology/Chess-Inspector.git
 
