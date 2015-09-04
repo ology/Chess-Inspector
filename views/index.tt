@@ -95,7 +95,7 @@ Threatened by: <% cell.is_threatened_by %>"
     cell<% IF response.white.can_move != 1 %>s<% END %></p>
     <p style="background: yellow; padding: 5px">Threaten: <% response.white.threaten %>
     time<% IF response.white.threaten != 1 %>s<% END %></p>
-    <p style="border: 3px solid green; padding: 5px">Protect: <% response.white.protect %>
+    <p style="background: lightgreen; padding: 5px">Protect: <% response.white.protect %>
     time<% IF response.white.protect != 1 %>s<% END %></p>
   </div>
 </div>
@@ -118,7 +118,7 @@ Threatened by: <% cell.is_threatened_by %>"
     cell<% IF response.black.can_move != 1 %>s<% END %></p>
     <p style="background: yellow; padding: 5px">Threaten: <% response.black.threaten %>
     time<% IF response.black.threaten != 1 %>s<% END %></p>
-    <p style="border: 3px solid green; padding: 5px">Protect: <% response.black.protect %>
+    <p style="background: lightgreen; padding: 5px">Protect: <% response.black.protect %>
     time<% IF response.black.protect != 1 %>s<% END %></p>
   </div>
 </div>
