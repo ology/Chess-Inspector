@@ -41,9 +41,8 @@ public/foundation-5.5.2/js/vendor/jquery.cookie.js
 public/foundation-5.5.2/js/vendor/jquery.js
 public/foundation-5.5.2/js/vendor/modernizr.js
 public/foundation-5.5.2/robots.txt
-public/images/Black-to-move.png
 public/images/Chess-Inspector.png
-public/images/Starting-Position.png
+public/images/hover-info.png
 public/javascripts/jquery.min.js
 public/kasparov.pgn
 public/pgn/kasparov-000.pgn
@@ -595,7 +594,6 @@ public/pgn/kasparov-545.pgn
 public/pgn/kasparov-546.pgn
 public/pgn/kasparov-547.pgn
 public/pgn/kasparov-548.pgn
-public/pgn/kasparov-549.pgn
 README.md
 t/001_base.t
 t/002_index_route.t
