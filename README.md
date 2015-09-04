@@ -18,11 +18,7 @@ Visualize move, protection and threat status
 
 > cd Chess-Inspector
 
-> perl Makefile.PL
-
-> make
-
-> sudo make install
+> cpan .
 
 > perl bin/app.pl
 
