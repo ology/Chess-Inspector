@@ -18,7 +18,7 @@ Visualize move, protection and threat status
 
 > cd Chess-Inspector
 
-> sudo cpan .
+> sudo cpan .  # This part can take a while...
 
 > perl bin/app.pl
 
