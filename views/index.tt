@@ -22,10 +22,12 @@
         <% ELSE %>
             <% style = 'background: white;' %>
         <% END %>
-        <% IF cell.protected > 0 %>
-            <% style = style _ ' border: ' _ cell.protected _ 'px solid green;' %>
+        <% IF cell.protected > 0 && cell.threatened > 0 %>
+            <% style = 'background: repeating-linear-gradient(45deg, lightgreen, lightgreen 10px, yellow 10px, yellow 20px);' %>
+        <% ELSIF cell.protected > 0 %>
+            <% style = 'background: lightgreen;' %>
         <% END %>
-        <% style = style _ ' text-align: center; font-size: xx-large;' %>
+        <% style = style _ ' text-align: center; font-size: xx-large; border-collapse: collapse;' %>
         <td id="<% colrow %>" height="55" width="55" style="<% style %>">
             <a title="<% cell.occupant %> - <% colrow %>
 Protects: <% cell.protects %>
