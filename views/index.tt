@@ -25,7 +25,7 @@
         <% IF cell.protected > 0 %>
             <% style = style _ ' border: ' _ cell.protected _ 'px solid green;' %>
         <% END %>
-        <% style = style _ ' text-align: center; font-size: larger;' %>
+        <% style = style _ ' text-align: center; font-size: xx-large;' %>
         <td id="<% colrow %>" height="55" width="55" style="<% style %>">
             <a title="<% cell.occupant %> - <% colrow %>
 Protects: <% cell.protects %>
