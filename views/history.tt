@@ -30,10 +30,11 @@
     <h3>Chess::Inspector</h3>
 
     <table id="chess_board" border="0" style="border-collapse: separate;">
+        <% style = 'text-align: center; border: none; background:#fff;' %>
 
         <% FOREACH row IN index.keys.sort %>
         <tr>
-            <td style="text-align: center"><% row %></td>
+            <td style="<% style %>"><% row %></td>
             <% FOREACH cell = index.$row %>
             <td height="55" width="55" style="text-align: center">
                 <% cell.val %>
@@ -42,7 +43,6 @@
         </tr>
         <% END %>
 
-        <% style = 'text-align: center; border: none;' %>
         <tr>
             <td style="<% style %>"></td>
             <td style="<% style %>">A</td>
