@@ -37,7 +37,7 @@ get '/' => sub {
     my $prev = params->{previous} || $posn;
     my $last = params->{last}     || '';
 
-    $fen = Chess::Rep::FEN_STANDARD unless $pgn;
+#    $fen = Chess::Rep::FEN_STANDARD unless $pgn;
 
     my $results = coverage( $fen, $pgn, $move, $posn, $prev, $last );
 

@@ -123,15 +123,17 @@ Threatened by: <% cell.is_threatened_by %>"
   </div>
 </div>
 
+<form>
+
 <div class="large-6 column">
-  <form>
   <select name="pgn" onchange="this.form.submit()">
     <option value="">Select a game</option>
     <% FOREACH g = response.games.sort('name') %>
         <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
     <% END %>
   </select>
-  </form>
+
+  <div>
   <% IF pgn && ( response.game.forward == 0 || response.game.forward > response.game.total ) %>
     <b>Result:</b> <% response.game.meta.result %>
   <% END %>
@@ -155,12 +157,19 @@ Threatened by: <% cell.is_threatened_by %>"
     <br/>
     <b>ECO:</b> <% response.game.meta.eco %>
   <% END %>
+  </div>
 </div>
 
 </div>
 
 <div class="row">
     <div class="large-12 column" style="text-align: center">
+    <% IF pgn %>
         <% response.game.fen %>
+    <% ELSE %>
+        <input type="text" name="fen" value="<% response.game.fen %>" />
+    <% END %>
     </div>
 </div>
+
+</form>
