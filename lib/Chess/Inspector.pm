@@ -30,14 +30,14 @@ player state to the response.
 =cut
 
 get '/' => sub {
-    my $fen  = params->{fen}      || Chess::Rep::FEN_STANDARD;
+    my $fen  = params->{fen};
     my $pgn  = params->{pgn}      || '';
     my $move = params->{move}     || 0;
     my $posn = params->{position} || 0;
     my $prev = params->{previous} || $posn;
     my $last = params->{last}     || '';
 
-#    $fen = Chess::Rep::FEN_STANDARD unless $pgn;
+    $fen = Chess::Rep::FEN_STANDARD if !$fen && !$pgn;
 
     my $results = coverage( $fen, $pgn, $move, $posn, $prev, $last );
 
@@ -73,7 +73,11 @@ sub coverage {
 
     if ( $pgn ) {
         # Set position and number of moves made.
-        ( $fen, $moves, $white, $black, $last_move, $meta ) = _fen_from_pgn( pgn => $pgn, move => $move );
+        ( $fen, $moves, $white, $black, $last_move, $meta ) = _fen_from_pgn(
+            pgn => $pgn,
+            move => $move,
+            $fen ? ( fen => $fen ) : (),
+        );
     }
 
     my $g = Chess::Rep::Coverage->new;
@@ -293,6 +297,8 @@ sub _fen_from_pgn {
         # Increment our move counter.
         $i++;
     }
+
+    $fen = $args{fen} if $args{fen};
 
     return $fen, $#moves, $p->white, $p->black, $last_move, $meta;
 }

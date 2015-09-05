@@ -124,7 +124,6 @@ Threatened by: <% cell.is_threatened_by %>"
 </div>
 
 <form>
-
 <div class="large-6 column">
   <select name="pgn" onchange="this.form.submit()">
     <option value="">Select a game</option>
@@ -132,6 +131,7 @@ Threatened by: <% cell.is_threatened_by %>"
         <option value="<% g.name %>"<% IF pgn == g.name %> selected<% END %>><% g.name %></option>
     <% END %>
   </select>
+</form>
 
   <div>
   <% IF pgn && ( response.game.forward == 0 || response.game.forward > response.game.total ) %>
@@ -162,13 +162,12 @@ Threatened by: <% cell.is_threatened_by %>"
 
 </div>
 
+<form>
+
 <div class="row">
     <div class="large-12 column" style="text-align: center">
-    <% IF pgn %>
-        <% response.game.fen %>
-    <% ELSE %>
         <input type="text" name="fen" value="<% response.game.fen %>" />
-    <% END %>
+        <input type="hidden" name="move" value="<% response.game.forward %>" />
     </div>
 </div>
 
