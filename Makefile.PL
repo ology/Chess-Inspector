@@ -28,6 +28,7 @@ WriteMakefile(
         'Data::TreeDumper'     => 0,
         'List::Tuples'         => 0,
         'POSIX'                => 0,
+        'Readonly'             => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Chess-Inspector-*' },
