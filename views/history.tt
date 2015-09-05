@@ -33,6 +33,7 @@
 
         <% FOREACH row IN index.keys.sort %>
         <tr>
+            <td style="text-align: center"><% row %></td>
             <% FOREACH cell = index.$row %>
             <td height="55" width="55" style="text-align: center">
                 <% cell.val %>
@@ -41,8 +42,21 @@
         </tr>
         <% END %>
 
+        <% style = 'text-align: center; border: none;' %>
         <tr>
-            <td colspan="8" style="text-align: center">
+            <td style="<% style %>"></td>
+            <td style="<% style %>">A</td>
+            <td style="<% style %>">B</td>
+            <td style="<% style %>">C</td>
+            <td style="<% style %>">D</td>
+            <td style="<% style %>">E</td>
+            <td style="<% style %>">F</td>
+            <td style="<% style %>">G</td>
+            <td style="<% style %>">H</td>
+        </tr>
+
+        <tr>
+            <td colspan="9" style="text-align: center">
               <a href="/history" title="Start" class="tiny button">|&#60;</a>
               <a href="/history?move=<% move - 1 %>" title="Step back" class="tiny button">&#60;</a>
               <a href="/history?move=<% move + 1 %>" title="Step forward" class="tiny button">&#62;</a>
