@@ -125,7 +125,7 @@ Threatened by: <% cell.is_threatened_by %>"
 
 <div class="large-6 column">
   <form>
-  <select name="pgn">
+  <select name="pgn" onchange="this.form.submit()">
     <option value="">Select a game</option>
         <optgroup label="Kasparov, Gary">
         <% FOREACH g = response.games.sort('name') %>
@@ -133,8 +133,6 @@ Threatened by: <% cell.is_threatened_by %>"
         <% END %>
         </optgroup>
   </select>
-  <br/>
-  <input type="submit" value="Refresh" class="tiny button right"/>
   </form>
   <% IF pgn && ( response.game.forward == 0 || response.game.forward > response.game.total ) %>
     <b>Result:</b> <% response.game.meta.result %>
