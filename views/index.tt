@@ -166,7 +166,6 @@ Threatened by: <% cell.is_threatened_by %>"
 <div class="row">
     <div class="large-12 column" style="text-align: center">
         <input type="text" name="fen" value="<% response.game.fen %>" />
-        <input type="hidden" name="move" value="<% response.game.forward %>" />
     </div>
 </div>
 
