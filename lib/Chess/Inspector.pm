@@ -341,6 +341,4 @@ sub parse_pgn {
     return \%vals;
 }
 
-1;
-
 true;
