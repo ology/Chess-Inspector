@@ -18,7 +18,7 @@ Chess::Inspector
 
 =head1 DESCRIPTION
 
-Visualize a chess game potential energy transformation
+Visualize the potential energy of a chess game
 
 =cut
 
