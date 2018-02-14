@@ -20,13 +20,6 @@ Chess::Inspector
 
 Visualize a chess game potential energy transformation
 
-=head1 METHOD
-
-=head2 coverage
-
-Compute the chess board coverage and append the game meta-data, each cell and
-player state to the response.
-
 =cut
 
 get '/' => sub {
