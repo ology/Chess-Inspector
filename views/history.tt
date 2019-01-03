@@ -70,7 +70,7 @@
 
     <div class="large-3 column">
       <p/>
-      <h3>Black player</h3>
+      <h3>Player</h3>
       <div class="panel">
         <p>Kasparov, Gary</p>
         <p>Moves made: <% move %> / <% total %></p>
