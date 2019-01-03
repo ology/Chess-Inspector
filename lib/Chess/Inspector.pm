@@ -309,16 +309,12 @@ sub parse_pgn {
         my $color = $game->{White} =~ /Kasparov/ ? 0 : 1;
         next if $color;
 
-        my @tuples;
         my $it = natatime 2, @{ $game->{GameMoves} };
-        while ( my @vals = $it->() ) {
-            push @tuples, \@vals;
-        }
 
         my $i = 0;
-        for my $tuple ( @tuples ) {
+        while ( my @tuple = $it->() ) {
             $i++;
-            my $move = $tuple->[$color];
+            my $move = $tuple[$color];
             $index{ $i }->{$move}++ if $move;
         }
     }
