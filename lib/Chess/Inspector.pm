@@ -7,7 +7,7 @@ use Chess::PGN::Parse;
 use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
-use List::Tuples qw( :all );
+use List::MoreUtils 'natatime';
 use POSIX;
 
 our $VERSION = '0.1';
@@ -308,8 +308,15 @@ sub parse_pgn {
     for my $game ( @$games ) {
         my $color = $game->{White} =~ /Kasparov/ ? 0 : 1;
         next if $color;
+
+        my @tuples;
+        my $it = natatime 2, @{ $game->{GameMoves} };
+        while ( my @vals = $it->() ) {
+            push @tuples, \@vals;
+        }
+
         my $i = 0;
-        for my $tuple ( tuples[2] => @{ $game->{GameMoves} } ) {
+        for my $tuple ( @tuples ) {
             $i++;
             my $move = $tuple->[$color];
             $index{ $i }->{$move}++ if $move;
