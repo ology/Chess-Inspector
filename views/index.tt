@@ -78,7 +78,7 @@ Threatened by: <% cell.is_threatened_by %>"
 <div class="large-3 column">
   <p/>
   <h3>
-  <% IF response.game.to_move == 0 %>
+  <% IF response.game.to_move == 0 || !pgn %>
     White
   <% ELSE %>
     White to move
