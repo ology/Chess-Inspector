@@ -8,7 +8,7 @@ use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
 use List::MoreUtils 'natatime';
-use POSIX;
+use POSIX qw/ ceil /;
 
 our $VERSION = '0.1';
 
