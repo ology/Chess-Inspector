@@ -7,7 +7,7 @@ use Chess::PGN::Parse;
 use Chess::Rep;
 use Chess::Rep::Coverage;
 use File::Basename;
-use List::MoreUtils 'natatime';
+use List::SomeUtils 'natatime';
 use POSIX qw/ ceil /;
 
 our $VERSION = '0.1';

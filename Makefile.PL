@@ -25,7 +25,7 @@ WriteMakefile(
         'Chess::Rep'           => 0,
         'Chess::Rep::Coverage' => 0,
         'File::Basename'       => 0,
-        'List::MoreUtils'      => 0,
+        'List::SomeUtils'      => 0,
         'POSIX'                => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
