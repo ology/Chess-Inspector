@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=<% settings.charset %>" />
+<meta name="robots" content="noindex">
 <title>Chess::Inspector</title>
 <link rel="stylesheet" href="<% request.uri_base %>/css/style.css" />
 
