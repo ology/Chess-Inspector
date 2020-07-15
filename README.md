@@ -11,15 +11,3 @@ Visualize move, protection and threat status
 *Hover over a piece:*
 
 ![Hover-Info](https://raw.githubusercontent.com/ology/Chess-Inspector/master/public/images/hover-info.png)
-
-*Terminal installation:*
-
-> git clone https://github.com/ology/Chess-Inspector.git
-
-> cd Chess-Inspector
-
-> sudo cpan .  # This part can take a while...
-
-> perl bin/app.pl
-
-Then open http://localhost:3000 in your web browser. Voila!
