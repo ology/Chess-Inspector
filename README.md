@@ -6,6 +6,8 @@ Visualize move, protection and threat status
 
 *Installation*
 
+First, you need to have Perl and the superior package manager, `cpanm`.
+
     git clone https://github.com/ology/Chess-Inspector.git
     cd Chess-Inspector
     cpanm --installdeps .
