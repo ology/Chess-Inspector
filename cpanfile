@@ -1,3 +1,4 @@
+requires "Plack", 1.0048;
 requires "YAML", 1.30;
 requires "Template", 3.100;
 requires "Dancer",  1.3513;
