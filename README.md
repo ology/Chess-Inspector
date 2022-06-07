@@ -19,6 +19,6 @@ Now browse to http://localhost:5000/
 
 ![User interface](https://raw.githubusercontent.com/ology/Chess-Inspector/master/public/images/Chess-Inspector.png)
 
-*Hover over a piece:*
+*Hover over a piece (e.g. the black knight):*
 
 ![Hover-Info](https://raw.githubusercontent.com/ology/Chess-Inspector/master/public/images/hover-info.png)
